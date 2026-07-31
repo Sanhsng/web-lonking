@@ -1,0 +1,1 @@
+fetch('http://localhost/lonking-cms/graphql', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query: 'query { pages { nodes { title } } }' }) }).then(r=>r.json()).then(r => console.log(JSON.stringify(r.data, null, 2)));

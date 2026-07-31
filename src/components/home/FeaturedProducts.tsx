@@ -20,11 +20,16 @@ export async function FeaturedProducts() {
       }
       specs.push({ icon: VolumeX, label: "Độ ồn", value: "< 65 dB(A)" });
     } else {
-      if (wp.productFields?.ratedPower) {
+      const isBulldozer = wp.productCategories?.nodes?.some(c => c.name.toLowerCase().includes("máy ủi")) || !!wp.productFields?.ironingCapacity;
+      
+      if (isBulldozer && wp.productFields?.ironingCapacity) {
+        specs.push({ icon: Cog, label: "Công suất ủi", value: wp.productFields.ironingCapacity });
+      } else if (wp.productFields?.ratedPower) {
         specs.push({ icon: Cog, label: "Công suất động cơ", value: wp.productFields.ratedPower });
       }
+      
       if (wp.productFields?.bucketCapacity) {
-        specs.push({ icon: ShoppingBasket, label: "Dung tích gầu", value: wp.productFields.bucketCapacity });
+        specs.push({ icon: ShoppingBasket, label: isBulldozer ? "Dung tích ủi" : "Dung tích gầu", value: wp.productFields.bucketCapacity });
       }
     }
 
@@ -55,12 +60,12 @@ export async function FeaturedProducts() {
               key={index}
               className="bg-white rounded-[16px] border border-outline-variant/50 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05),0_20px_25px_-5px_rgba(0,0,0,0.02)] overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_25px_35px_-10px_rgba(0,0,0,0.04)]"
             >
-              <div className="h-64 bg-surface-container-low relative overflow-hidden group">
+              <Link href={`/products/${product.slug}`} className="h-64 bg-surface-container-low relative overflow-hidden group block">
                 <div
                   className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                   style={{ backgroundImage: `url('${product.image}')` }}
                 ></div>
-              </div>
+              </Link>
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="font-headline-md text-[20px] text-on-surface font-bold mb-1">
                   {product.title}

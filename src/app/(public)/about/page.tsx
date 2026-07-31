@@ -17,7 +17,7 @@ export default function AboutPage() {
           className="absolute inset-0 w-full h-full bg-cover bg-center"
           style={{
             backgroundImage:
-              'url("https://lh3.googleusercontent.com/aida-public/AB6AXuD91eDpLNX8337TkB1u-Z447HRsEV6OCTgEiUKB8cvUl2_-PCYRh_tQl9wuHq8gN6Rb5U1uoU-x9jlySdEzfQCjuhnTzyjALoYWKkeDUQyxHNCucDhWhFJHUGilCuEJQ8Udgs_SxCGNbyA9XU1KfFBOCaeOJQlHJIJsTjCzgMrlE0u7fZabUCwqzEGx_ClSBaqMmmOGSBmT0i_WuOZIsglxgpzA53SdwebaMF1li3o0scMJa-jhX1a6vdcj4YTOFWoyw9h7SSj9mO4")',
+              'url("/images/banners/about-banner.jpg")',
           }}
         ></div>
         <div className="absolute inset-0 bg-gradient-to-r from-on-background/80 to-transparent"></div>

@@ -12,8 +12,7 @@ export function Footer() {
           </span>
         </div>
         <p className="text-[15px] md:text-[17px] leading-relaxed text-surface-variant/70 mb-6 max-w-sm">
-          Được thiết kế cho sự xuất sắc. Cung cấp máy móc xây dựng mạnh mẽ nhất
-          thế giới trong hơn hai thập kỷ qua.
+          Cung cấp các dòng máy công trình chính hãng với dịch vụ tư vấn, bảo hành và hậu mãi chuyên nghiệp, đáp ứng mọi nhu cầu thi công.
         </p>
       </div>
       <div className="col-span-12 md:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -22,6 +21,22 @@ export function Footer() {
             Công ty
           </h4>
           <ul className="space-y-3">
+            <li>
+              <Link
+                href="/about"
+                className="text-surface-variant/70 dark:text-on-surface-variant hover:text-white dark:hover:text-primary transition-colors hover:translate-x-1 duration-200 cursor-pointer inline-block text-[14px] md:text-[15px]"
+              >
+                Giới thiệu
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/careers"
+                className="text-surface-variant/70 dark:text-on-surface-variant hover:text-white dark:hover:text-primary transition-colors hover:translate-x-1 duration-200 cursor-pointer inline-block text-[14px] md:text-[15px]"
+              >
+                Tuyển dụng
+              </Link>
+            </li>
             <li>
               <Link
                 href="/privacy-policy"
@@ -35,15 +50,7 @@ export function Footer() {
                 href="/terms"
                 className="text-surface-variant/70 dark:text-on-surface-variant hover:text-white dark:hover:text-primary transition-colors hover:translate-x-1 duration-200 cursor-pointer inline-block text-[14px] md:text-[15px]"
               >
-                Điều khoản dịch vụ
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/careers"
-                className="text-surface-variant/70 dark:text-on-surface-variant hover:text-white dark:hover:text-primary transition-colors hover:translate-x-1 duration-200 cursor-pointer inline-block text-[14px] md:text-[15px]"
-              >
-                Tuyển dụng
+                Điều khoản sử dụng
               </Link>
             </li>
           </ul>
@@ -55,26 +62,34 @@ export function Footer() {
           <ul className="space-y-3">
             <li>
               <Link
-                href="/safety"
+                href="/blog"
                 className="text-surface-variant/70 dark:text-on-surface-variant hover:text-white dark:hover:text-primary transition-colors hover:translate-x-1 duration-200 cursor-pointer inline-block text-[14px] md:text-[15px]"
               >
-                An toàn máy móc
+                Tin tức
               </Link>
             </li>
             <li>
               <Link
-                href="/dealer-portal"
+                href="/huong-dan-van-hanh"
                 className="text-surface-variant/70 dark:text-on-surface-variant hover:text-white dark:hover:text-primary transition-colors hover:translate-x-1 duration-200 cursor-pointer inline-block text-[14px] md:text-[15px]"
               >
-                Cổng đại lý
+                Hướng dẫn vận hành
               </Link>
             </li>
             <li>
               <Link
-                href="/support"
+                href="/chinh-sach-bao-hanh"
                 className="text-surface-variant/70 dark:text-on-surface-variant hover:text-white dark:hover:text-primary transition-colors hover:translate-x-1 duration-200 cursor-pointer inline-block text-[14px] md:text-[15px]"
               >
-                Hỗ trợ
+                Chính sách bảo hành
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/cau-hoi-thuong-gap"
+                className="text-surface-variant/70 dark:text-on-surface-variant hover:text-white dark:hover:text-primary transition-colors hover:translate-x-1 duration-200 cursor-pointer inline-block text-[14px] md:text-[15px]"
+              >
+                Câu hỏi thường gặp
               </Link>
             </li>
           </ul>
@@ -97,10 +112,14 @@ export function Footer() {
         </div>
       </div>
       <div className="col-span-12 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-[14px] md:text-[15px] text-surface-variant/50">
-          © 2026 Lonking Việt Nam. Cung cấp máy công trình phù hợp với ngân sách
-          của khách hàng.
-        </p>
+        <div className="flex flex-col gap-1">
+          <p className="text-[14px] md:text-[15px] text-surface-variant/50">
+            © 2026 LONKING VIỆT NAM. All Rights Reserved.
+          </p>
+          <p className="text-[14px] md:text-[15px] text-surface-variant/50">
+            Nhà phân phối máy công trình Lonking chính hãng tại Việt Nam.
+          </p>
+        </div>
         <div className="flex gap-4">
           <button
             aria-label="Chia sẻ"

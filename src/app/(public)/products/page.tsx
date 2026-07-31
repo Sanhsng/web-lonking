@@ -22,6 +22,9 @@ export default async function ProductsPage() {
       console.log("DEBUG 6420:", wp.productFields?.powerType, "isElectric:", isElectric);
     }
     
+    const isBulldozer = wp.productCategories?.nodes?.some(c => c.name.toLowerCase().includes("máy ủi")) || !!wp.productFields?.ironingCapacity;
+    const powerLabel = isBulldozer && wp.productFields?.ironingCapacity ? wp.productFields.ironingCapacity : wp.productFields?.ratedPower;
+
     return {
       slug: wp.slug,
       title: wp.title,
@@ -35,7 +38,7 @@ export default async function ProductsPage() {
       power: parseFloat(wp.productFields?.ratedPower || "0"),
       specs: [
         { icon: <Weight className="w-[18px] h-[18px]" />, label: wp.productFields?.operatingWeight || "N/A" },
-        { icon: <Cog className="w-[18px] h-[18px]" />, label: wp.productFields?.ratedPower || "N/A" },
+        { icon: <Cog className="w-[18px] h-[18px]" />, label: powerLabel || "N/A" },
         { icon: <Container className="w-[18px] h-[18px]" />, label: wp.productFields?.bucketCapacity || "N/A" },
         { icon: isElectric ? <Zap className="w-[18px] h-[18px]" /> : <Fuel className="w-[18px] h-[18px]" />, label: isElectric ? "Điện" : "Diesel" }
       ],

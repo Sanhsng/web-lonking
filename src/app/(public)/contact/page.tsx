@@ -27,10 +27,10 @@ export default async function ContactPage() {
       <section className="relative w-full h-[500px] flex items-end pb-section-padding-lg">
         <div className="absolute inset-0 z-0">
           <div
-            className="w-full h-full bg-cover bg-center"
+            className="w-full h-full bg-cover"
             style={{
-              backgroundImage:
-                'url("https://lh3.googleusercontent.com/aida-public/AB6AXuArAXcO0G8ut80srz7AxymPhtgQCOoXoXhzYTjQYtn-SgyilUxaygDmgRQS-UfLBccKAh53J1Q7kbB485rrez7_iQ5ny7N-7fOXypG8ymXSq9rfINx_QFXfjzTohoPVFmyXTXP5Xg6UNb1Fc1JCbc4gBcMxtUcL5zbTuL3ZMGSwsDsJ0Xsw44THJ6iVXE02rHKQXuU6tOTFHX10VvWVh-VcQhAINwM9A4UQjYuXkYMseZqMfOrTG9CQwkWKxMwBzAQg8c-u6dPxZOI")',
+              backgroundImage: 'url("/images/banners/contact-team-banner.jpg")',
+              backgroundPosition: 'center 80%'
             }}
           ></div>
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>

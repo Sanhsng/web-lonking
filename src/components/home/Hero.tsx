@@ -4,14 +4,21 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-const heroImages = [
+const defaultHeroImages = [
   "https://lh3.googleusercontent.com/aida-public/AB6AXuCfvjTxHgx5ih7pv-cm7UpxcQfR-ynsgzhya5YfzRbYntdd-BHo-2hP4zW4DHxm4nhzRQJd6l-uYXF1vVXrffWUbu8IWpHPYDSTHEnZRXrBmasUCsUouR2066qCwBHcg1TGxH-eNVEakcEducthWm_xxnfwJonCs3tZ1uUhLXp8WB8STqsauOa6rtxCcamMuoR8DXhkq-B6To1GfgY2s90884fTkdzwBXK6QXzM45WgEW_VQFUTUDThnZ__L7TJbePtzMXGDXM4AQQ",
   "/images/banners/hero_1.png",
   "/images/banners/hero_2.png",
   "/images/banners/hero_3.png"
 ];
 
-export function Hero() {
+interface HeroProps {
+  images?: string[];
+  title?: string;
+  description?: string;
+}
+
+export function Hero({ images, title, description }: HeroProps) {
+  const heroImages = images && images.length > 0 ? images : defaultHeroImages;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -40,12 +47,10 @@ export function Hero() {
       <div className="relative z-10 w-full max-w-container-max mx-auto px-8 grid grid-cols-1 md:grid-cols-12 gap-8">
         <div className="md:col-span-8 lg:col-span-7 flex flex-col gap-6">
           <h1 className="font-headline-xl text-[40px] md:text-headline-xl text-white font-black tracking-tighter leading-[1.1]">
-            Thiết bị công trình đáng tin cậy cho mọi dự án xây dựng
+            {title || "Thiết bị công trình đáng tin cậy cho mọi dự án xây dựng"}
           </h1>
           <p className="font-body-lg text-body-lg text-surface-variant/90 max-w-xl">
-            Máy móc cao cấp được thiết kế để mang lại hiệu suất, độ bền và
-            năng suất tối đa trên những công trường khắc nghiệt nhất thế giới.
-            Bền bỉ. Đích thực LONKING.
+            {description || "Máy móc cao cấp được thiết kế để mang lại hiệu suất, độ bền và năng suất tối đa trên những công trường khắc nghiệt nhất thế giới. Bền bỉ. Đích thực LONKING."}
           </p>
           <div className="flex flex-wrap items-center gap-4 pt-4">
             <Link

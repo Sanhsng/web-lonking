@@ -48,17 +48,20 @@ export default async function ProductDetailPage({ params }: Props) {
 
   const uniqueImages = Array.from(new Set(validImages));
 
+  const isElectric = productFields?.powerType?.some(t => t.toLowerCase().includes('electric') || t.toLowerCase().includes('điện'));
+  const isBulldozer = product.productCategories?.nodes?.some(c => c.name.toLowerCase().includes("máy ủi")) || !!productFields?.ironingCapacity;
+
   // Compile specifications based on available fields
   const specsRaw = [
     { label: "Model", value: productFields?.model },
     { label: "Động cơ", value: productFields?.engine },
-    { label: "Dung tích gầu", value: productFields?.bucketCapacity },
+    { label: isBulldozer ? "Dung tích ủi" : "Dung tích gầu", value: productFields?.bucketCapacity },
     { label: "Trọng lượng vận hành", value: productFields?.operatingWeight },
     { label: "Công suất định mức", value: productFields?.ratedPower },
     { label: "Tải trọng nâng", value: productFields?.liftingCapacity },
     { label: "Công suất ủi", value: productFields?.ironingCapacity },
     { label: "Nguồn nhiên liệu", value: productFields?.powerType?.join(', ') },
-    { label: "Loại pin", value: productFields?.loIPin },
+    { label: "Loại pin", value: isElectric ? productFields?.loIPin : undefined },
   ];
 
   const specifications = specsRaw.filter(spec => !!spec.value);

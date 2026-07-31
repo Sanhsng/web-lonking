@@ -17,7 +17,7 @@ export function CatalogProductCard({
 }: CatalogProductCardProps) {
   return (
     <div className="group bg-surface-container-lowest rounded-xl border border-outline-variant/40 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden">
-      <div className="relative h-56 w-full overflow-hidden bg-surface-container-low">
+      <Link href={`/products/${slug}`} className="relative h-56 w-full overflow-hidden bg-surface-container-low block">
         {/* Status Badge */}
         {(isNew || powerType === "electric") && (
           <div className="absolute top-4 left-4 z-10 glass-panel px-3 py-1 rounded-full flex items-center gap-1">
@@ -37,7 +37,7 @@ export function CatalogProductCard({
           className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-700 ease-out"
           style={{ backgroundImage: `url(${image})` }}
         ></div>
-      </div>
+      </Link>
       <div className="p-6 flex flex-col flex-grow">
         <div className="flex justify-between items-start mb-2 gap-2">
           <h3 className="text-title-lg font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2" title={title}>

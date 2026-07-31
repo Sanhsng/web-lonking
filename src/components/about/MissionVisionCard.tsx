@@ -20,7 +20,7 @@ export function MissionVisionCard({
       <div
         className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 ${iconContainerClass}`}
       >
-        <div className={`w-8 h-8 ${iconClass}`}>{icon}</div>
+        <div className={`w-8 h-8 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full ${iconClass}`}>{icon}</div>
       </div>
       <h2 className="font-headline-md text-headline-md text-on-background mb-4">
         {title}
