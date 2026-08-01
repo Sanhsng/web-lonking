@@ -42,10 +42,10 @@ export async function FeaturedProducts() {
     };
   });
   return (
-    <section className="py-section-padding-lg bg-surface relative">
-      <div className="max-w-container-max mx-auto px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4 font-bold">
+    <section className="py-12 md:py-section-padding-lg bg-surface relative overflow-hidden">
+      <div className="max-w-container-max mx-auto px-4 sm:px-6 md:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16">
+          <h2 className="font-headline-lg text-[28px] sm:text-[32px] md:text-headline-lg text-on-surface mb-3 md:mb-4 font-bold leading-tight">
             Model nổi bật
           </h2>
           <p className="text-on-surface-variant text-body-lg font-body-lg">
@@ -54,13 +54,13 @@ export async function FeaturedProducts() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {displayProducts.map((product, index) => (
             <div
               key={index}
               className="bg-white rounded-[16px] border border-outline-variant/50 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05),0_20px_25px_-5px_rgba(0,0,0,0.02)] overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_25px_35px_-10px_rgba(0,0,0,0.04)]"
             >
-              <Link href={`/products/${product.slug}`} className="h-64 bg-surface-container-low relative overflow-hidden group block">
+              <Link href={`/products/${product.slug}`} className="h-56 md:h-64 bg-surface-container-low relative overflow-hidden group block">
                 <div
                   className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                   style={{ backgroundImage: `url('${product.image}')` }}
@@ -97,7 +97,7 @@ export async function FeaturedProducts() {
                 </div>
                 <Link
                   href={`/products/${product.slug}`}
-                  className="w-full bg-surface hover:bg-surface-container-high border border-outline-variant/60 text-primary font-label-md text-label-md py-3 rounded-[16px] transition-colors font-semibold uppercase tracking-wide text-center"
+                  className="w-full bg-surface hover:bg-surface-container-high border border-outline-variant/60 text-primary font-label-md text-[14px] md:text-[15px] py-3 md:py-3.5 rounded-[16px] transition-colors font-semibold uppercase tracking-wide text-center mt-auto"
                 >
                   Tìm hiểu thêm
                 </Link>

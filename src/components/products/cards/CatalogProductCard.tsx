@@ -38,13 +38,13 @@ export function CatalogProductCard({
           style={{ backgroundImage: `url(${image})` }}
         ></div>
       </Link>
-      <div className="p-6 flex flex-col flex-grow">
+      <div className="p-4 sm:p-6 flex flex-col flex-grow">
         <div className="flex justify-between items-start mb-2 gap-2">
           <h3 className="text-title-lg font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2" title={title}>
             <Link href={`/products/${slug}`}>{title}</Link>
           </h3>
           <button 
-            className={`transition-colors flex-shrink-0 ${isLiked ? 'text-primary' : 'text-outline hover:text-primary'}`}
+            className={`transition-colors flex-shrink-0 p-2 -mr-2 -mt-2 rounded-full hover:bg-surface-variant/30 active:scale-95 ${isLiked ? 'text-primary' : 'text-outline hover:text-primary'}`}
             onClick={(e) => {
               e.preventDefault();
               onToggleLike?.(slug);

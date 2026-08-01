@@ -33,6 +33,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
   const [sortBy, setSortBy] = useState<string>("recommended");
   const [currentPage, setCurrentPage] = useState(1);
   const [likedProducts, setLikedProducts] = useState<string[]>([]);
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const ITEMS_PER_PAGE = 6;
 
   useEffect(() => {
@@ -81,6 +82,18 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery, selectedCategories, selectedPowerType, weightRange, sortBy]);
+
+  // Handle body scroll when mobile filter is open
+  useEffect(() => {
+    if (isMobileFilterOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileFilterOpen]);
 
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
@@ -176,6 +189,8 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
         categoryCounts={categoryCounts}
         weightRange={weightRange}
         setWeightRange={setWeightRange}
+        isMobileOpen={isMobileFilterOpen}
+        onClose={() => setIsMobileFilterOpen(false)}
       />
 
       <div className="md:col-span-9 flex flex-col">
@@ -183,6 +198,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
           totalCount={filteredProducts.length} 
           sortBy={sortBy}
           setSortBy={setSortBy}
+          onToggleFilter={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-stack-gap mb-12">

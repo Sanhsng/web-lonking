@@ -11,9 +11,9 @@ import { getPosts, getCategories } from "@/services/blog";
 export const revalidate = 60; // Revalidate every 60 seconds
 
 export const metadata: Metadata = {
-  title: "Titan Heavy Machinery - Góc nhìn & Tin tức",
+  title: "Tin Tức & Sự Kiện | Lonking",
   description:
-    "Tin tức và cập nhật ngành công nghiệp máy móc hạng nặng. Phân tích chuyên gia, mẹo bảo trì và những tiến bộ công nghệ mới nhất.",
+    "Tin tức và cập nhật mới nhất về các dòng máy xúc lật, máy xúc đào và thiết bị công trình Lonking. Phân tích chuyên gia, mẹo bảo trì và công nghệ.",
 };
 
 export default async function BlogListPage(props: {
@@ -97,23 +97,23 @@ export default async function BlogListPage(props: {
   return (
     <main className="pt-24 pb-section-padding-lg max-w-container-max mx-auto px-margin-mobile md:px-8">
       {/* Hero Section */}
-      <section className="py-12 md:py-20 text-center max-w-3xl mx-auto">
-        <h1 className="font-headline-xl text-headline-xl md:text-[56px] md:leading-[64px] text-on-background mb-6">
+      <section className="py-8 md:py-20 text-center max-w-3xl mx-auto px-4">
+        <h1 className="font-headline-xl text-[36px] sm:text-[44px] md:text-[56px] md:leading-[64px] text-on-background mb-4 md:mb-6 leading-tight">
           Góc nhìn Lonking
         </h1>
-        <p className="font-body-lg text-body-lg text-on-surface-variant">
+        <p className="font-body-lg text-[15px] sm:text-body-lg text-on-surface-variant">
           Tin tức và cập nhật ngành công nghiệp máy móc hạng nặng. Phân tích
           chuyên gia, mẹo bảo trì và những tiến bộ công nghệ mới nhất.
         </p>
       </section>
 
       {/* Categories / Filters */}
-      <section className="mb-12 flex flex-wrap justify-center gap-3">
+      <section className="mb-12 flex flex-wrap justify-center gap-2 sm:gap-3">
         {displayCategories.map((cat) => (
           <Link
             key={cat.id}
             href={cat.id === "all" ? "/blog" : `/blog?category=${cat.id}`}
-            className={`font-label-md px-5 py-2 rounded-full transition-all ${
+            className={`text-[12px] sm:text-label-md sm:font-label-md px-3 py-1.5 sm:px-5 sm:py-2 rounded-full transition-all ${
               cat.active
                 ? "bg-primary text-white shadow-sm hover:scale-95 transition-transform"
                 : "bg-surface-container-low text-on-surface-variant hover:bg-surface-variant border border-outline-variant/50 transition-colors"
@@ -126,7 +126,7 @@ export default async function BlogListPage(props: {
 
       {/* Featured Post */}
       {featuredPost && (
-        <section className="mb-section-padding-lg">
+        <section className="mb-12 md:mb-section-padding-lg px-4 md:px-0">
           <article className="bg-surface-container-lowest rounded-[16px] border border-outline-variant/30 overflow-hidden shadow-[0_20px_25px_-5px_rgba(0,0,0,0.05),0_8px_10px_-6px_rgba(0,0,0,0.01)] hover:-translate-y-1 transition-all duration-300 grid md:grid-cols-2 gap-0 relative group">
             <div className="h-64 md:h-auto w-full bg-surface-variant relative overflow-hidden">
               <Image
@@ -164,7 +164,7 @@ export default async function BlogListPage(props: {
 
       {/* Post Grid */}
       {regularPosts.length > 0 ? (
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter mb-section-padding-lg">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-gutter mb-12 md:mb-section-padding-lg px-4 md:px-0">
           {regularPosts.map((post) => (
             <BlogCard key={post.slug} {...post} />
           ))}

@@ -25,11 +25,11 @@ export async function CategoriesGrid() {
   }));
 
   return (
-    <section className="py-section-padding-lg bg-surface-bright relative z-20">
-      <div className="max-w-container-max mx-auto px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+    <section className="py-12 md:py-section-padding-lg bg-surface-bright relative z-20 overflow-hidden">
+      <div className="max-w-container-max mx-auto px-4 sm:px-6 md:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 mb-10 md:mb-12">
           <div className="max-w-2xl">
-            <h2 className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4 font-bold">
+            <h2 className="font-headline-lg text-[28px] sm:text-[32px] md:text-headline-lg text-on-surface mb-3 md:mb-4 font-bold leading-tight">
               Danh mục thiết bị
             </h2>
             <p className="text-on-surface-variant text-body-lg font-body-lg">
@@ -46,7 +46,7 @@ export async function CategoriesGrid() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {displayCategories.map((category, index) => {
             const Icon = category.icon;
             return (

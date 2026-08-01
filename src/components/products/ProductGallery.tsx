@@ -40,7 +40,7 @@ export function ProductGallery({ images, title, model, isNew }: ProductGalleryPr
       
       {/* Gallery Thumbnails */}
       {images.length > 1 && (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-4">
           {images.map((imgSrc, index) => (
             <button 
               key={index} 

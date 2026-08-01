@@ -10,23 +10,23 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main>
+    <main className="pt-20">
       {/* Hero Section */}
-      <section className="relative w-full h-[614px] min-h-[500px] flex items-center justify-center bg-surface-container-highest overflow-hidden">
+      <section className="relative w-full h-auto aspect-[16/10] sm:aspect-auto min-h-0 sm:min-h-[614px] flex items-start sm:items-center justify-center bg-surface-container-highest overflow-hidden pt-4 pb-4 sm:py-24 md:py-32">
         <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center"
+          className="absolute inset-0 w-full h-full bg-cover bg-[center_top] sm:bg-center"
           style={{
             backgroundImage:
               'url("/images/banners/about-banner.jpg")',
           }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-on-background/80 to-transparent"></div>
-        <div className="relative z-10 max-w-container-max mx-auto px-8 w-full">
-          <div className="max-w-2xl">
-            <h1 className="font-headline-xl text-headline-xl text-white mb-6">
+        <div className="absolute inset-0 bg-gradient-to-r from-on-background/80 to-background/20 sm:to-transparent"></div>
+        <div className="relative z-10 max-w-container-max mx-auto px-4 sm:px-6 md:px-8 w-full text-center sm:text-left flex flex-col items-center sm:items-start">
+          <div className="max-w-2xl bg-black/20 sm:bg-transparent p-3 sm:p-0 rounded-xl sm:rounded-none backdrop-blur-md sm:backdrop-blur-none border border-white/10 sm:border-none">
+            <h1 className="font-bold sm:font-headline-xl text-[16px] sm:text-[40px] md:text-headline-xl text-white mb-1.5 sm:mb-6 leading-tight">
               Nhiều thập kỷ xuất sắc trong ngành máy thiết bị công trình
             </h1>
-            <p className="font-body-lg text-body-lg text-surface-variant mb-8">
+            <p className="font-body-sm sm:font-body-lg text-[10px] sm:text-body-lg text-surface-variant mb-1 sm:mb-8 line-clamp-3 sm:line-clamp-none">
               Xây dựng nền móng của ngày mai với sức mạnh không ngừng, kỹ thuật
               chính xác và cam kết đổi mới từ năm 2013.
             </p>
@@ -35,8 +35,8 @@ export default function AboutPage() {
       </section>
 
       {/* Our Mission/Vision */}
-      <section className="py-section-padding-lg bg-surface">
-        <div className="max-w-container-max mx-auto px-8">
+      <section className="py-12 md:py-section-padding-lg bg-surface">
+        <div className="max-w-container-max mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
             {/* Mission */}
             <MissionVisionCard

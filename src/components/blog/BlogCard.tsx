@@ -17,7 +17,7 @@ export function BlogCard({
       href={`/blog/${slug}`}
       className="group bg-white rounded-[16px] overflow-hidden shadow-[0_2px_4px_rgba(0,0,0,0.05),0_10px_20px_-5px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.05),0_15px_30px_-5px_rgba(0,0,0,0.08)] hover:-translate-y-1 border border-outline-variant/20 flex flex-col h-full transition-all duration-300"
     >
-      <div className="h-48 overflow-hidden relative">
+      <div className="h-48 md:h-56 overflow-hidden relative">
         <Image
           src={image}
           alt={title}
@@ -28,8 +28,8 @@ export function BlogCard({
           {category}
         </div>
       </div>
-      <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-headline-md text-on-surface mb-3 group-hover:text-primary transition-colors">
+      <div className="p-4 sm:p-6 flex flex-col flex-grow">
+        <h3 className="text-[18px] sm:text-[20px] md:text-[22px] font-bold text-on-surface mb-2 sm:mb-3 group-hover:text-primary transition-colors leading-tight">
           {title}
         </h3>
         <p className="text-body-md text-on-surface-variant mb-6 flex-grow line-clamp-3">

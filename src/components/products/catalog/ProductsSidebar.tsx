@@ -13,6 +13,8 @@ interface ProductsSidebarProps {
   categoryCounts: { name: string; count: number }[];
   weightRange: [number, number];
   setWeightRange: (val: [number, number]) => void;
+  isMobileOpen?: boolean;
+  onClose?: () => void;
 }
 
 function DualSlider({ min, max, value, onChange }: { min: number, max: number, value: [number, number], onChange: (val: [number, number]) => void }) {
@@ -60,6 +62,8 @@ export function ProductsSidebar({
   categoryCounts,
   weightRange,
   setWeightRange,
+  isMobileOpen,
+  onClose,
 }: ProductsSidebarProps) {
   const [isCategoryOpen, setIsCategoryOpen] = useState(true);
   const [isPowerTypeOpen, setIsPowerTypeOpen] = useState(true);
@@ -74,9 +78,29 @@ export function ProductsSidebar({
   };
 
   return (
-    <aside className="md:col-span-3 sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar pr-4 hidden md:block">
-      {/* Search */}
-      <div className="mb-8">
+    <>
+      {/* Mobile Overlay */}
+      {isMobileOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+          onClick={onClose}
+        />
+      )}
+      <aside className={`
+        fixed inset-y-0 left-0 w-[280px] sm:w-[320px] bg-surface z-50 p-6 flex flex-col max-h-screen overflow-y-auto custom-scrollbar transition-transform duration-300
+        ${isMobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}
+        md:relative md:inset-auto md:w-auto md:bg-transparent md:z-auto md:p-0 md:translate-x-0 md:col-span-3 md:sticky md:top-28 md:max-h-[calc(100vh-8rem)] md:pr-4 md:shadow-none md:block
+      `}>
+        {/* Mobile Header */}
+        <div className="flex justify-between items-center mb-6 md:hidden">
+          <h3 className="font-headline-sm font-bold text-on-surface">Bộ lọc</h3>
+          <button onClick={onClose} className="p-2 -mr-2 text-outline hover:text-on-surface rounded-full hover:bg-surface-container-low transition-colors">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+        
+        {/* Search */}
+        <div className="mb-8">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-outline w-5 h-5 pointer-events-none" />
           <input
@@ -174,5 +198,6 @@ export function ProductsSidebar({
         )}
       </div>
     </aside>
+    </>
   );
 }

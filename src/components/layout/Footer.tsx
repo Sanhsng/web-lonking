@@ -4,18 +4,18 @@ import { siteConfig } from "@/config/site";
 
 export function Footer() {
   return (
-    <footer className="w-full pt-section-padding-lg pb-10 bg-on-background dark:bg-surface-container-lowest text-white/90 dark:text-on-surface grid grid-cols-12 gap-gutter px-4 md:px-8 lg:px-12 xl:px-16">
-      <div className="col-span-12 md:col-span-4 mb-8 md:mb-0">
-        <div className="flex items-center gap-2 mb-6">
-          <span className="text-[28px] md:text-[32px] font-black text-white dark:text-on-background uppercase tracking-tighter">
+    <footer className="w-full pt-12 md:pt-section-padding-lg pb-10 bg-on-background dark:bg-surface-container-lowest text-white/90 dark:text-on-surface flex flex-col gap-8 md:grid md:grid-cols-12 md:gap-gutter px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 overflow-hidden">
+      <div className="md:col-span-4 mb-4 md:mb-0">
+        <div className="flex items-center gap-2 mb-4 md:mb-6">
+          <span className="text-[24px] sm:text-[28px] md:text-[32px] font-black text-white dark:text-on-background uppercase tracking-tighter">
             Lonking Việt Nam
           </span>
         </div>
-        <p className="text-[15px] md:text-[17px] leading-relaxed text-surface-variant/70 mb-6 max-w-sm">
+        <p className="text-[14px] sm:text-[15px] md:text-[17px] leading-relaxed text-surface-variant/70 mb-6 max-w-sm">
           Cung cấp các dòng máy công trình chính hãng với dịch vụ tư vấn, bảo hành và hậu mãi chuyên nghiệp, đáp ứng mọi nhu cầu thi công.
         </p>
       </div>
-      <div className="col-span-12 md:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         <div>
           <h4 className="text-[16px] md:text-[18px] text-white font-bold mb-4 uppercase tracking-wider">
             Công ty
@@ -94,11 +94,11 @@ export function Footer() {
             </li>
           </ul>
         </div>
-        <div className="col-span-2 md:col-span-1">
+        <div className="col-span-1 sm:col-span-2 md:col-span-1">
           <h4 className="text-[16px] md:text-[18px] text-white font-bold mb-4 uppercase tracking-wider">
             địa chỉ
           </h4>
-          <p className="text-[14px] md:text-[15px] leading-relaxed text-surface-variant/70 mb-2">
+          <p className="text-[14px] md:text-[15px] leading-relaxed text-surface-variant/70 mb-2 break-words">
             Miền Bắc: Phù Dực 1, Phù Đổng, Gia Lâm, Hà Nội
             <br />
             Miền Nam: Đường D5, KDC Cường Thuận, P.Phước Tân, TP.Biên Hòa, Đồng Nai
@@ -111,7 +111,7 @@ export function Footer() {
           </a>
         </div>
       </div>
-      <div className="col-span-12 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="md:col-span-12 mt-8 md:mt-12 pt-6 md:pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center sm:items-start gap-4">
         <div className="flex flex-col gap-1">
           <p className="text-[14px] md:text-[15px] text-surface-variant/50">
             © 2026 LONKING VIỆT NAM. All Rights Reserved.

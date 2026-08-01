@@ -12,8 +12,8 @@ export function NewsletterBanner() {
           }}
         ></div>
       </div>
-      <div className="relative z-10 bg-white/10 backdrop-blur-md border border-white/30 m-4 md:m-8 rounded-[16px] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 text-white shadow-lg">
-        <div className="max-w-xl">
+      <div className="relative z-10 bg-white/10 backdrop-blur-md border border-white/30 m-4 md:m-8 rounded-2xl p-6 sm:p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-8 text-white shadow-lg">
+        <div className="max-w-xl text-center lg:text-left">
           <h3 className="font-headline-lg text-headline-lg mb-2 font-bold">
             Luôn đi trước đón đầu
           </h3>
@@ -23,14 +23,14 @@ export function NewsletterBanner() {
             thuật từ chuyên gia được gửi thẳng đến hộp thư đến của bạn.
           </p>
         </div>
-        <form className="flex w-full md:w-auto gap-2">
+        <form className="flex flex-col w-full max-w-[420px] lg:max-w-none lg:w-auto gap-3 sm:gap-4 lg:flex-row mx-auto lg:mx-0">
           <input
-            className="bg-white/20 border border-white/30 rounded-lg px-4 py-3 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-secondary-container flex-1 min-w-[250px]"
+            className="bg-white/20 border border-white/30 rounded-lg px-4 py-3 sm:py-3.5 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-secondary-container w-full lg:w-[300px]"
             placeholder="Địa chỉ email doanh nghiệp"
             type="email"
           />
           <button
-            className="bg-secondary-container text-on-secondary-container font-semibold text-label-md px-6 py-3 rounded-[8px] hover:bg-secondary-fixed transition-colors whitespace-nowrap"
+            className="bg-secondary-container text-on-secondary-container font-semibold text-label-md px-6 py-3 sm:py-3.5 rounded-lg hover:bg-secondary-fixed transition-colors whitespace-nowrap w-full lg:w-auto text-center"
             type="button"
           >
             Đăng ký

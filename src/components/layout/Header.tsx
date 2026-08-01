@@ -131,7 +131,7 @@ export function Header() {
         {/* Mobile Menu Toggle */}
         <button
           aria-label="Mở menu"
-          className="lg:hidden text-on-surface p-2 transition-transform active:scale-95"
+          className="lg:hidden text-on-surface p-3 transition-transform active:scale-95 flex items-center justify-center rounded-lg hover:bg-surface-variant/30"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? (
