@@ -11,7 +11,7 @@ export async function getHeroData(): Promise<HeroData> {
     // Dữ liệu trong wp_hero_banners_cache là nội dung của data.pages
     const pages = await fetchFromUpstash<any>("wp_hero_banners_cache");
     const settings = pages?.nodes?.[0]?.websiteSettings;
-    
+
     const images = [
       settings?.heroBackground?.node?.sourceUrl,
       settings?.heroBackground2?.node?.sourceUrl,

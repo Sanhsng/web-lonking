@@ -126,20 +126,20 @@ async function fetchWithRetry(page, query, variables = {}) {
             credentials: "same-origin", // To send cookies like __test
             body: JSON.stringify({ query, variables }),
           });
-          
+
           if (!res.ok) {
             throw new Error(`HTTP Error: ${res.status}`);
           }
-          
+
           return await res.json();
         },
         { endpoint: GRAPHQL_ENDPOINT, query, variables }
       );
-      
+
       if (result.errors) {
         throw new Error(`GraphQL Errors: ${JSON.stringify(result.errors)}`);
       }
-      
+
       return result.data;
     } catch (error) {
       console.warn(`⚠️ [Attempt ${attempt}/${MAX_RETRIES}] Lỗi khi fetch GraphQL:`, error.message);
@@ -168,12 +168,12 @@ async function saveToUpstash(key, data) {
       if (!res.ok) {
         throw new Error(`Upstash HTTP Error: ${res.status}`);
       }
-      
+
       const result = await res.json();
       if (result.error) {
         throw new Error(`Upstash Error: ${result.error}`);
       }
-      
+
       console.log(`✅ Lưu thành công key: ${key}`);
       return;
     } catch (error) {
@@ -197,12 +197,24 @@ async function main() {
     console.log(`🌐 Đang mở trang ${WP_URL} để nhận cookie chống bot...`);
     // Chờ domcontentloaded để chắc chắn script aes.js đã chạy và set cookie __test
     await page.goto(WP_URL, { waitUntil: "domcontentloaded", timeout: 30000 });
-    
+
     // Đợi thêm 2 giây để chắc chắn challenge JS đã hoàn thành nếu có redirect nội bộ
     await page.waitForTimeout(2000);
 
     const cookies = await context.cookies();
     console.log("🍪 Cookies hiện tại:", cookies.map(c => c.name).join(", "));
+    
+    // Lưu cookie __test vào Redis để Next.js Proxy dùng tải ảnh tĩnh
+    const testCookie = cookies.find(c => c.name === '__test');
+    if (testCookie) {
+      console.log(`🔑 Đã tìm thấy cookie __test, đang lưu vào Redis...`);
+      await saveToUpstash('wp_cookie_cache', testCookie.value);
+    }
+    
+    // Bắt buộc phải lưu đúng User-Agent mà Playwright dùng, 
+    // vì InfinityFree khoá cookie __test theo IP và User-Agent.
+    const userAgent = await page.evaluate(() => navigator.userAgent);
+    await saveToUpstash('wp_user_agent_cache', userAgent);
 
     console.log("🔄 Bắt đầu lấy dữ liệu từ WPGraphQL...");
     
@@ -218,6 +230,33 @@ async function main() {
       else if (key === 'wp_products_cache') finalData = data.products;
       else if (key === 'wp_product_categories_cache') finalData = data.productCategories;
 
+      await saveToUpstash(key, finalData);
+    }
+    
+    console.log("\n🔄 Bắt đầu lấy dữ liệu từ REST API...");
+    const REST_ENDPOINTS = {
+      wp_lucky_prizes_cache: `${WP_URL}/wp-json/lucky/v1/prizes`
+    };
+    
+    for (const [key, url] of Object.entries(REST_ENDPOINTS)) {
+      console.log(`\n⏳ Đang fetch REST data cho: ${key}`);
+      let attempt = 1;
+      let finalData = null;
+      while (attempt <= MAX_RETRIES) {
+        try {
+          finalData = await page.evaluate(async ({ url }) => {
+            const res = await fetch(url, { credentials: "same-origin" });
+            if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
+            return await res.json();
+          }, { url });
+          break;
+        } catch (error) {
+          console.warn(`⚠️ [Attempt ${attempt}/${MAX_RETRIES}] Lỗi khi fetch REST ${url}:`, error.message);
+          if (attempt === MAX_RETRIES) throw error;
+          await sleep(RETRY_DELAY_MS);
+          attempt++;
+        }
+      }
       await saveToUpstash(key, finalData);
     }
     

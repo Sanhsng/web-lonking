@@ -39,8 +39,8 @@ export function LuckyDrawClient({ prizes, segments }: LuckyDrawClientProps) {
               Mã dự thưởng: <span className="font-mono font-bold tracking-wider">{validCode}</span>
             </p>
           </div>
-          
-          <LuckyWheel 
+
+          <LuckyWheel
             customerName={customerName}
             code={validCode}
             prizes={prizes}

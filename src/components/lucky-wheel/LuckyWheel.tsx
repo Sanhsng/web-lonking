@@ -26,6 +26,7 @@ const SPIN_DURATION_MS = 5000;
 export function LuckyWheel({ customerName, code, prizes, segments, onComplete, onReset }: LuckyWheelProps) {
   const [isSpinning, setIsSpinning] = useState(false);
   const [rotation, setRotation] = useState(0);
+  const [transitionStyle, setTransitionStyle] = useState(`transform ${SPIN_DURATION_MS}ms cubic-bezier(0.25, 1, 0.25, 1)`);
   const [resultPrize, setResultPrize] = useState<Prize | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [serverError, setServerError] = useState("");
@@ -40,6 +41,10 @@ export function LuckyWheel({ customerName, code, prizes, segments, onComplete, o
     setIsModalOpen(false);
     setServerError("");
 
+    // Bắt đầu hiệu ứng quay ngay lập tức (pre-spin) trong lúc chờ API
+    setTransitionStyle(`transform 10000ms cubic-bezier(0.3, 0, 0.7, 0.3)`);
+    setRotation(prev => prev + 360 * 15); 
+
     try {
       // Call backend to determine prize securely
       const data = await spinLuckyDraw(code);
@@ -47,10 +52,13 @@ export function LuckyWheel({ customerName, code, prizes, segments, onComplete, o
       if (!data.success) {
         setServerError(data.message || "Lỗi kết nối máy chủ");
         setIsSpinning(false);
+        // Trả lại vị trí cũ
+        setTransitionStyle(`transform 1000ms cubic-bezier(0.25, 1, 0.25, 1)`);
+        setRotation(rotation); 
         return;
       }
 
-      // Find the prize object based on server response (assuming prize name or ID matches)
+      // Find the prize object based on server response
       const wonPrize = prizes.find(p => {
         if (data.prizeId && p.id === data.prizeId.toString()) return true;
         if (data.prize) {
@@ -64,6 +72,8 @@ export function LuckyWheel({ customerName, code, prizes, segments, onComplete, o
       if (!wonPrize) {
         setServerError(`Lỗi dữ liệu: Không tìm thấy giải khớp. Response: ${JSON.stringify(data)}`);
         setIsSpinning(false);
+        setTransitionStyle(`transform 1000ms cubic-bezier(0.25, 1, 0.25, 1)`);
+        setRotation(rotation);
         return;
       }
 
@@ -75,9 +85,9 @@ export function LuckyWheel({ customerName, code, prizes, segments, onComplete, o
       // 3. Pick a random segment from the matching ones to land on
       const winningIndex = matchingSegmentIndices[Math.floor(Math.random() * matchingSegmentIndices.length)];
 
-      // Calculate rotation
+      // Calculate final rotation
       const segmentAngle = 360 / segments.length;
-      const extraSpins = 5 + Math.floor(Math.random() * 5);
+      const extraSpins = 4 + Math.floor(Math.random() * 3);
       const extraDegrees = extraSpins * 360;
       
       // Add randomness within the segment
@@ -86,6 +96,8 @@ export function LuckyWheel({ customerName, code, prizes, segments, onComplete, o
       const currentBase = rotation - (rotation % 360);
       const newRotation = currentBase + extraDegrees + (360 - (winningIndex * segmentAngle)) + randomOffset;
 
+      // Cập nhật góc quay đích đến (chuyển sang ease-out để dừng lại)
+      setTransitionStyle(`transform ${SPIN_DURATION_MS}ms cubic-bezier(0.1, 1, 0.2, 1)`);
       setRotation(newRotation);
 
       setTimeout(() => {
@@ -98,6 +110,8 @@ export function LuckyWheel({ customerName, code, prizes, segments, onComplete, o
       console.error(err);
       setServerError("Không thể kết nối đến máy chủ.");
       setIsSpinning(false);
+      setTransitionStyle(`transform 1000ms cubic-bezier(0.25, 1, 0.25, 1)`);
+      setRotation(rotation);
     }
   };
 
@@ -135,7 +149,7 @@ export function LuckyWheel({ customerName, code, prizes, segments, onComplete, o
             className="relative w-full h-full"
             style={{ 
               transform: `rotate(${rotation}deg)`,
-              transition: `transform ${SPIN_DURATION_MS}ms cubic-bezier(0.25, 1, 0.25, 1)`
+              transition: transitionStyle
             }}
           >
             <svg className="w-full h-full" viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}>

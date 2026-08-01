@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { LuckyDrawClient } from "@/components/lucky-wheel/LuckyDrawClient";
 import { Prize } from "@/types/promotion";
+import { fetchFromUpstash } from "@/lib/redis";
 
 export const metadata: Metadata = {
   title: "Vòng Quay May Mắn | Lonking",
@@ -16,23 +17,17 @@ export default async function LuckyWheelPage() {
   let segments: { prizeId: string; color: string }[] = [];
 
   try {
-    const apiUrl = `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/lucky/v1/prizes`;
-    const res = await fetch(apiUrl, {
-      next: { revalidate: 60 }
-    });
+    const data = await fetchFromUpstash<any>("wp_lucky_prizes_cache");
 
-    if (res.ok) {
-      const data = await res.json();
-      if (data.success && Array.isArray(data.data)) {
-        prizes = data.data.map((item: any) => ({
-          id: item.id.toString(),
-          name: item.name,
-          type: "GIAI_NHI", // Default to GIAI_NHI for now
-          quantity: item.quantity,
-          image: item.imageUrl || "",
-          probability: 10,
-        }));
-      }
+    if (data && data.success && Array.isArray(data.data)) {
+      prizes = data.data.map((item: any) => ({
+        id: item.id.toString(),
+        name: item.name,
+        type: "GIAI_NHI", // Default to GIAI_NHI for now
+        quantity: item.quantity,
+        image: item.imageUrl ? `/api/image?url=${encodeURIComponent(item.imageUrl)}` : "",
+        probability: 10,
+      }));
     }
 
     // Add a "Chúc may mắn" (Miss) prize

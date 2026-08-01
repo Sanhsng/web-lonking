@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { fetchFromUpstash } from "@/lib/redis";
 
 export async function POST(request: Request) {
   try {
@@ -12,20 +13,41 @@ export async function POST(request: Request) {
       );
     }
 
+    const testCookie = await fetchFromUpstash<string>('wp_cookie_cache');
+    const userAgent = await fetchFromUpstash<string>('wp_user_agent_cache');
+    
+    const headers: HeadersInit = {
+      "Content-Type": "application/json",
+      "User-Agent": userAgent || "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    };
+    if (testCookie) {
+      headers["Cookie"] = `__test=${testCookie}`;
+    }
+
     const apiUrl = `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/lucky/v1/check`;
+    
+    console.log("Validate Code Headers:", headers);
+    
     const res = await fetch(apiUrl, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers,
       body: JSON.stringify({ code }),
     });
 
-    const data = await res.json();
+    const text = await res.text();
+    console.log("Validate Code Response Status:", res.status);
+    console.log("Validate Code Response Text:", text.substring(0, 150));
     
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      throw new Error(`Failed to parse JSON. Response: ${text.substring(0, 100)}`);
+    }
+
     if (!res.ok) {
       return NextResponse.json(
-        { success: false, message: data.message || "Mã không hợp lệ" },
+        { success: false, message: data?.message || "Mã không hợp lệ" },
         { status: res.status }
       );
     }
