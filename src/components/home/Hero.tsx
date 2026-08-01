@@ -29,7 +29,7 @@ export function Hero({ images, title, description }: HeroProps) {
   }, []);
 
   return (
-    <section className="relative w-full h-[650px] lg:h-[700px] min-h-[500px] flex items-center overflow-hidden">
+    <section className="relative w-full h-[650px] lg:h-[700px] min-h-[500px] flex items-end pb-16 md:pb-24 overflow-hidden">
       {/* Background Image Slider */}
       <div className="absolute inset-0 z-0 bg-[#001b3b]">
         {heroImages.map((src, index) => (

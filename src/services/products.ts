@@ -1,167 +1,44 @@
-import { graphqlClient } from "@/lib/graphql";
+import { fetchFromUpstash } from "@/lib/redis";
 import { WPProduct } from "@/types/wordpress";
 
-const PRODUCTS_QUERY = `
-query Products {
-  products(first: 100) {
-    nodes {
-      id
-      title
-      slug
-      content
-      productCategories {
-        nodes {
-          name
-          slug
-        }
-      }
-
-      featuredImage {
-        node {
-          sourceUrl
-        }
-      }
-
-      productFields {
-        model
-        engine
-        bucketCapacity
-        operatingWeight
-        ratedPower
-        liftingCapacity
-        ironingCapacity
-        loIPin
-        powerType
-        shortDescription
-        isNew
-        isFeatured
-        productGallery {
-          node {
-            sourceUrl
-          }
-        }
-        nh2 {
-          node {
-            sourceUrl
-          }
-        }
-        nh3 {
-          node {
-            sourceUrl
-          }
-        }
-      }
-    }
-  }
-}
-`;
-
-const PRODUCT_BY_SLUG_QUERY = `
-query ProductBySlug($id: ID!) {
-  product(id: $id, idType: SLUG) {
-    id
-    title
-    slug
-    content
-    productCategories {
-      nodes {
-        name
-        slug
-      }
-    }
-
-    featuredImage {
-      node {
-        sourceUrl
-      }
-    }
-
-    productFields {
-      model
-      engine
-      bucketCapacity
-      operatingWeight
-      ratedPower
-      liftingCapacity
-      ironingCapacity
-      loIPin
-      powerType
-      shortDescription
-      isNew
-      isFeatured
-      productGallery {
-        node {
-          sourceUrl
-        }
-      }
-      nh2 {
-        node {
-          sourceUrl
-        }
-      }
-      nh3 {
-        node {
-          sourceUrl
-        }
-      }
-    }
-  }
-}
-`;
-
-const GET_PRODUCT_CATEGORIES_QUERY = `
-query GetProductCategories {
-  productCategories(first: 100) {
-    nodes {
-      name
-      slug
-      productCategoryFields {
-        categoryImage {
-          node {
-            sourceUrl
-          }
-        }
-      }
-    }
-  }
-}
-`;
-
 export async function getProducts(): Promise<WPProduct[]> {
-    const data = await graphqlClient.request<{ products: { nodes: WPProduct[] } }>(
-        PRODUCTS_QUERY
-    );
-
-    return data.products.nodes;
+  try {
+    const products = await fetchFromUpstash<{ nodes: WPProduct[] }>("wp_products_cache");
+    return products?.nodes || [];
+  } catch (error) {
+    console.error("Error fetching WP products:", error);
+    return [];
+  }
 }
 
 export async function getProductBySlug(slug: string): Promise<WPProduct | null> {
-    const data = await graphqlClient.request<{ product: WPProduct }>(
-        PRODUCT_BY_SLUG_QUERY,
-        { id: slug }
-    );
-    return data.product || null;
+  try {
+    const products = await fetchFromUpstash<{ nodes: WPProduct[] }>("wp_products_cache");
+    const allProducts = products?.nodes || [];
+    return allProducts.find((p) => p.slug === slug) || null;
+  } catch (error) {
+    console.error(`Error fetching WP product with slug ${slug}:`, error);
+    return null;
+  }
 }
 
 export const getProductCategories = async () => {
   try {
-    const data = await graphqlClient.request<{
-      productCategories: {
-        nodes: {
-          name: string;
-          slug: string;
-          productCategoryFields?: {
-            categoryImage?: {
-              node?: {
-                sourceUrl: string;
-              }
+    const data = await fetchFromUpstash<{
+      nodes: {
+        name: string;
+        slug: string;
+        productCategoryFields?: {
+          categoryImage?: {
+            node?: {
+              sourceUrl: string;
             }
           }
-        }[]
-      }
-    }>(GET_PRODUCT_CATEGORIES_QUERY);
+        }
+      }[]
+    }>("wp_product_categories_cache");
     
-    return data.productCategories?.nodes || [];
+    return data?.nodes || [];
   } catch (error) {
     console.error("Error fetching WP product categories:", error);
     return [];

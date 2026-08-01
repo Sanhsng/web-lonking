@@ -1,5 +1,4 @@
-import { graphqlClient } from "@/lib/graphql";
-import { gql } from "graphql-request";
+import { fetchFromUpstash } from "@/lib/redis";
 
 export interface WPPostNode {
   title: string;
@@ -37,91 +36,10 @@ export interface WPCategoryNode {
   count?: number;
 }
 
-const GET_POSTS_QUERY = gql`
-  query GetPosts {
-    posts {
-      nodes {
-        title
-        slug
-        excerpt
-        date
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        categories {
-          nodes {
-            name
-            slug
-          }
-        }
-        blogFields {
-          readTime
-          isFeatured
-          authorName
-          authorRole
-          authorAvatar {
-            node {
-              sourceUrl
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-const GET_POST_BY_SLUG_QUERY = gql`
-  query GetPostBySlug($id: ID!) {
-    post(id: $id, idType: SLUG) {
-      title
-      slug
-      excerpt
-      content
-      date
-      featuredImage {
-        node {
-          sourceUrl
-        }
-      }
-      categories {
-        nodes {
-          name
-          slug
-        }
-      }
-      blogFields {
-        readTime
-        isFeatured
-        authorName
-        authorRole
-        authorAvatar {
-          node {
-            sourceUrl
-          }
-        }
-      }
-    }
-  }
-`;
-
-const GET_CATEGORIES_QUERY = gql`
-  query GetCategories {
-    categories(where: { hideEmpty: false }) {
-      nodes {
-        name
-        slug
-        count
-      }
-    }
-  }
-`;
-
 export const getPosts = async (): Promise<WPPostNode[]> => {
   try {
-    const data = await graphqlClient.request<{ posts: { nodes: WPPostNode[] } }>(GET_POSTS_QUERY);
-    return data.posts?.nodes || [];
+    const posts = await fetchFromUpstash<{ nodes: WPPostNode[] }>("wp_posts_cache");
+    return posts?.nodes || [];
   } catch (error) {
     console.error("Error fetching WP posts:", error);
     return [];
@@ -130,8 +48,9 @@ export const getPosts = async (): Promise<WPPostNode[]> => {
 
 export const getPostBySlug = async (slug: string): Promise<WPPostNode | null> => {
   try {
-    const data = await graphqlClient.request<{ post: WPPostNode }>(GET_POST_BY_SLUG_QUERY, { id: slug });
-    return data.post || null;
+    const posts = await fetchFromUpstash<{ nodes: WPPostNode[] }>("wp_posts_cache");
+    const allPosts = posts?.nodes || [];
+    return allPosts.find((p) => p.slug === slug) || null;
   } catch (error) {
     console.error(`Error fetching WP post with slug ${slug}:`, error);
     return null;
@@ -140,11 +59,10 @@ export const getPostBySlug = async (slug: string): Promise<WPPostNode | null> =>
 
 export const getCategories = async (): Promise<WPCategoryNode[]> => {
   try {
-    const data = await graphqlClient.request<{ categories: { nodes: WPCategoryNode[] } }>(GET_CATEGORIES_QUERY);
-    return data.categories?.nodes || [];
+    const categories = await fetchFromUpstash<{ nodes: WPCategoryNode[] }>("wp_categories_cache");
+    return categories?.nodes || [];
   } catch (error) {
     console.error("Error fetching WP categories:", error);
     return [];
   }
 };
-

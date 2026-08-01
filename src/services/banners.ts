@@ -1,5 +1,4 @@
-import { graphqlClient } from "@/lib/graphql";
-import { gql } from "graphql-request";
+import { fetchFromUpstash } from "@/lib/redis";
 
 export interface HeroData {
   images: string[];
@@ -7,38 +6,11 @@ export interface HeroData {
   description?: string;
 }
 
-const GET_HERO_BANNERS_QUERY = gql`
-  query GetHeroBanners {
-    pages(where: { title: "Website Settings" }) {
-      nodes {
-        websiteSettings {
-          heroTitle
-          heroDescription
-          heroBackground {
-            node {
-              sourceUrl
-            }
-          }
-          heroBackground2 {
-            node {
-              sourceUrl
-            }
-          }
-          heroBackground3 {
-            node {
-              sourceUrl
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 export async function getHeroData(): Promise<HeroData> {
   try {
-    const data = await graphqlClient.request<any>(GET_HERO_BANNERS_QUERY);
-    const settings = data?.pages?.nodes?.[0]?.websiteSettings;
+    // Dữ liệu trong wp_hero_banners_cache là nội dung của data.pages
+    const pages = await fetchFromUpstash<any>("wp_hero_banners_cache");
+    const settings = pages?.nodes?.[0]?.websiteSettings;
     
     const images = [
       settings?.heroBackground?.node?.sourceUrl,
