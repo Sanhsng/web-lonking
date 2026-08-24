@@ -16,11 +16,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = await getProductBySlug(slug);
   
   if (!product) {
-    return { title: "Sản phẩm không tồn tại | Lonking Việt Nam" };
+    return { title: "Sản phẩm không tồn tại | Lovol Việt Nam" };
   }
 
   return {
-    title: `${product.title} | Lonking Việt Nam`,
+    title: `${product.title} | Lovol Việt Nam`,
     description: product.productFields?.shortDescription || "Chi tiết sản phẩm",
   };
 }

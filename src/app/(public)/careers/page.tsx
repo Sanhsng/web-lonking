@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Tuyển dụng | Lonking Việt Nam",
-  description: "Thông tin tuyển dụng từ Lonking Việt Nam.",
+  title: "Tuyển dụng | Lovol Việt Nam",
+  description: "Thông tin tuyển dụng từ Lovol Việt Nam.",
 };
 
 export default function CareersPage() {
@@ -13,8 +13,8 @@ export default function CareersPage() {
           Tuyển dụng
         </h1>
         <div className="prose prose-lg dark:prose-invert max-w-none text-on-surface-variant font-body-lg leading-relaxed">
-          <p>Chào mừng bạn đến với trang Tuyển dụng của Lonking Việt Nam.</p>
-          <p>Lonking tự hào là một trong những môi trường làm việc chuyên nghiệp, năng động và sáng tạo hàng đầu trong lĩnh vực phân phối máy móc thiết bị công trình tại Việt Nam.</p>
+          <p>Chào mừng bạn đến với trang Tuyển dụng của Lovol Việt Nam.</p>
+          <p>Lovol tự hào là một trong những môi trường làm việc chuyên nghiệp, năng động và sáng tạo hàng đầu trong lĩnh vực phân phối máy móc thiết bị công trình tại Việt Nam.</p>
           <h3>Vị trí đang tuyển</h3>
           <ul>
             <li><strong>Nhân viên kinh doanh (Sales):</strong> Số lượng 5. Yêu cầu có kinh nghiệm làm việc trong ngành thiết bị công trình.</li>
@@ -22,7 +22,7 @@ export default function CareersPage() {
           </ul>
           <h3>Quyền lợi</h3>
           <p>Mức lương thưởng hấp dẫn, bảo hiểm y tế và xã hội đầy đủ, có lộ trình thăng tiến rõ ràng.</p>
-          <p>Vui lòng gửi CV về địa chỉ email: <strong>hr@lonkingvietnam.com</strong></p>
+          <p>Vui lòng gửi CV về địa chỉ email: <strong>365hieu@gmail.com</strong></p>
         </div>
       </div>
     </main>

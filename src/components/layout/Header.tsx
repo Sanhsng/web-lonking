@@ -49,7 +49,7 @@ export function Header() {
         >
           <Image
             src="/logo.png"
-            alt="Lonking"
+            alt="Lovol"
             width={300}
             height={100}
             className="object-contain h-12 md:h-16 w-auto"

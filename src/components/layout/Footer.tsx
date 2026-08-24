@@ -8,7 +8,7 @@ export function Footer() {
       <div className="md:col-span-4 mb-4 md:mb-0">
         <div className="flex items-center gap-2 mb-4 md:mb-6">
           <span className="text-[24px] sm:text-[28px] md:text-[32px] font-black text-white dark:text-on-background uppercase tracking-tighter">
-            Lonking Việt Nam
+            Lovol Việt Nam
           </span>
         </div>
         <p className="text-[14px] sm:text-[15px] md:text-[17px] leading-relaxed text-surface-variant/70 mb-6 max-w-sm">
@@ -114,10 +114,10 @@ export function Footer() {
       <div className="md:col-span-12 mt-8 md:mt-12 pt-6 md:pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center sm:items-start gap-4">
         <div className="flex flex-col gap-1">
           <p className="text-[14px] md:text-[15px] text-surface-variant/50">
-            © 2026 LONKING VIỆT NAM. All Rights Reserved.
+            © 2026 LOVOL VIỆT NAM. All Rights Reserved.
           </p>
           <p className="text-[14px] md:text-[15px] text-surface-variant/50">
-            Nhà phân phối máy công trình Lonking chính hãng tại Việt Nam.
+            Nhà phân phối máy công trình Lovol chính hãng tại Việt Nam.
           </p>
         </div>
         <div className="flex gap-4">

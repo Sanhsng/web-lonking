@@ -11,9 +11,9 @@ import { getPosts, getCategories } from "@/services/blog";
 export const revalidate = 60; // Revalidate every 60 seconds
 
 export const metadata: Metadata = {
-  title: "Tin Tức & Sự Kiện | Lonking",
+  title: "Tin Tức & Sự Kiện | Lovol",
   description:
-    "Tin tức và cập nhật mới nhất về các dòng máy xúc lật, máy xúc đào và thiết bị công trình Lonking. Phân tích chuyên gia, mẹo bảo trì và công nghệ.",
+    "Tin tức và cập nhật mới nhất về các dòng máy xúc lật, máy xúc đào và thiết bị công trình Lovol. Phân tích chuyên gia, mẹo bảo trì và công nghệ.",
 };
 
 export default async function BlogListPage(props: {
@@ -99,7 +99,7 @@ export default async function BlogListPage(props: {
       {/* Hero Section */}
       <section className="py-8 md:py-20 text-center max-w-3xl mx-auto px-4">
         <h1 className="font-headline-xl text-[36px] sm:text-[44px] md:text-[56px] md:leading-[64px] text-on-background mb-4 md:mb-6 leading-tight">
-          Góc nhìn Lonking
+          Góc nhìn Lovol
         </h1>
         <p className="font-body-lg text-[15px] sm:text-body-lg text-on-surface-variant">
           Tin tức và cập nhật ngành công nghiệp máy móc hạng nặng. Phân tích

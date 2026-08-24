@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Hướng dẫn vận hành | Lonking Việt Nam",
-  description: "Tài liệu hướng dẫn vận hành máy công trình Lonking.",
+  title: "Hướng dẫn vận hành | Lovol Việt Nam",
+  description: "Tài liệu hướng dẫn vận hành máy công trình Lovol.",
 };
 
 export default function OperationManualPage() {
@@ -13,7 +13,7 @@ export default function OperationManualPage() {
           Hướng dẫn vận hành
         </h1>
         <div className="prose prose-lg dark:prose-invert max-w-none text-on-surface-variant font-body-lg leading-relaxed">
-          <p>Để đảm bảo hiệu suất tối đa và an toàn khi sử dụng thiết bị Lonking, khách hàng vui lòng tuân thủ các quy tắc vận hành sau:</p>
+          <p>Để đảm bảo hiệu suất tối đa và an toàn khi sử dụng thiết bị Lovol, khách hàng vui lòng tuân thủ các quy tắc vận hành sau:</p>
           <h3>1. Kiểm tra trước khi nổ máy</h3>
           <p>Luôn kiểm tra nhớt động cơ, nước làm mát, nhớt thủy lực và hệ thống phanh trước khi bắt đầu một ca làm việc mới.</p>
           <h3>2. Khởi động đúng cách</h3>

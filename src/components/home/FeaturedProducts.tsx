@@ -50,7 +50,7 @@ export async function FeaturedProducts() {
           </h2>
           <p className="text-on-surface-variant text-body-lg font-body-lg">
             Khám phá các thiết bị nổi bật của chúng tôi, đại diện cho đỉnh cao
-            trong khả năng kỹ thuật và thiết kế của Lonking.
+            trong khả năng kỹ thuật và thiết kế của Lovol.
           </p>
         </div>
 

@@ -50,7 +50,7 @@ export function Hero({ images, title, description }: HeroProps) {
             {title || "Thiết bị công trình đáng tin cậy cho mọi dự án xây dựng"}
           </h1>
           <p className="text-[10px] sm:text-body-lg text-surface-variant/90 max-w-xl line-clamp-2 sm:line-clamp-none">
-            {description || "Máy móc cao cấp được thiết kế để mang lại hiệu suất, độ bền và năng suất tối đa trên những công trường khắc nghiệt nhất thế giới. Bền bỉ. Đích thực LONKING."}
+            {description || "Máy móc cao cấp được thiết kế để mang lại hiệu suất, độ bền và năng suất tối đa trên những công trường khắc nghiệt nhất thế giới. Bền bỉ. Đích thực LOVOL."}
           </p>
           <div className="flex flex-row items-center sm:items-start justify-start gap-2 sm:gap-4 pt-2 sm:pt-4 w-full">
             <Link

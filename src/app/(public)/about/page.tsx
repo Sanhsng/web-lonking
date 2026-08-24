@@ -4,7 +4,7 @@ import React from "react";
 import { MissionVisionCard } from "@/components/about/MissionVisionCard";
 
 export const metadata: Metadata = {
-  title: "Về chúng tôi | Lonking Việt Nam",
+  title: "Về chúng tôi | Lovol Việt Nam",
   description: "Nhiều thập kỷ xuất sắc trong ngành máy thiết bị công trình.",
 };
 

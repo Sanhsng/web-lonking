@@ -7,7 +7,7 @@ export const LUCKY_WHEEL_DATA: Prize[] = [
     type: "GIAI_NHAT",
     quantity: 3,
     image: "", // Cập nhật link ảnh thực tế sau
-    probability: 5, // 5% trúng giải nhất
+    probability: 0, // 0% trúng giải nhất
   },
   {
     id: "2",
@@ -15,7 +15,7 @@ export const LUCKY_WHEEL_DATA: Prize[] = [
     type: "GIAI_NHI",
     quantity: 5,
     image: "",
-    probability: 20, // 20% trúng giải nhì
+    probability: 100, // 100% trúng giải nhì
   },
   {
     id: "3",
@@ -23,7 +23,7 @@ export const LUCKY_WHEEL_DATA: Prize[] = [
     type: "TRUOT",
     quantity: 4, // Số lượng ô hiển thị trên vòng quay
     image: "",
-    probability: 75, // 75% trượt
+    probability: 0, // 0% trượt
   },
 ];
 

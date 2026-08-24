@@ -4,7 +4,7 @@ import { Prize } from "@/types/promotion";
 import { fetchFromUpstash } from "@/lib/redis";
 
 export const metadata: Metadata = {
-  title: "Vòng Quay May Mắn | Lonking",
+  title: "Vòng Quay May Mắn | Lovol",
   description: "Tham gia vòng quay may mắn để nhận nhiều phần quà hấp dẫn.",
 };
 

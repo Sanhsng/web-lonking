@@ -6,7 +6,7 @@ import { ProductCatalog, Product } from "@/components/products/catalog/ProductCa
 import { getProducts } from "@/services/products";
 
 export const metadata: Metadata = {
-  title: "Đội xe của chúng tôi | Lonking Việt Nam",
+  title: "Đội xe của chúng tôi | Lovol Việt Nam",
   description: "Khám phá dải máy móc hạng nặng toàn diện của chúng tôi.",
 };
 

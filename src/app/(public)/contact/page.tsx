@@ -7,7 +7,7 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { getProducts } from "@/services/products";
 
 export const metadata: Metadata = {
-  title: "Liên hệ với chúng tôi - Lonking Việt Nam",
+  title: "Liên hệ với chúng tôi - Lovol Việt Nam",
   description:
     "Các chuyên gia kỹ thuật và đội ngũ hỗ trợ mua sắm của chúng tôi luôn sẵn sàng hỗ trợ bạn với các thắc mắc về kỹ thuật, giải pháp quản lý đội xe và báo giá tùy chỉnh.",
 };
@@ -127,9 +127,9 @@ export default async function ContactPage() {
                 </h4>
                 <a
                   className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors break-words"
-                  href="mailto:nsanh2005@gmail.com"
+                  href="mailto:365hieu@gmail.com"
                 >
-                  nsanh2005@gmail.com
+                  365hieu@gmail.com
                 </a>
               </div>
 
@@ -154,20 +154,20 @@ export default async function ContactPage() {
       <section className="py-8 md:py-12 w-full max-w-container-max mx-auto px-4 sm:px-6 md:px-8">
         <div className="w-full h-[300px] md:h-[400px] rounded-xl overflow-hidden shadow-sm border border-surface-variant bg-surface-container-low relative group">
           <iframe
-            src="https://www.google.com/maps?q=Phù+Dực+1,+Phù+Đổng,+Gia+Lâm,+Hà+Nội&output=embed"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.8532934096907!2d106.8954775096208!3d10.898752056882667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174dfe0803a549b%3A0x195b942650241bd9!2zQ8OUTkcgVFkgQ-G7lCBQSOG6pk4gVEhJ4bq-VCBC4buKIDM2NSAtIENISSBOSMOBTkggTUnhu4BOIE5BTQ!5e0!3m2!1svi!2s!4v1787564597113!5m2!1svi!2s"
             width="100%"
             height="100%"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
+            referrerPolicy="strict-origin-when-cross-origin"
             className="absolute inset-0 z-0"
           ></iframe>
           {/* Glassmorphism overlay for location badge */}
           <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md border border-white/50 px-4 py-2 rounded-lg flex items-center space-x-2 shadow-sm pointer-events-none z-10 transition-opacity duration-300 group-hover:opacity-0">
             <Building2 className="text-primary w-5 h-5" />
             <span className="font-label-sm text-label-sm text-on-background font-semibold">
-              Trụ sở Lonking Việt Nam
+              Trụ sở Lovol Việt Nam
             </span>
           </div>
         </div>
