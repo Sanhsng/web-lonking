@@ -54,11 +54,11 @@ export async function FeaturedProducts() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="flex overflow-x-auto pb-6 snap-x snap-mandatory gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 md:gap-8 -mx-4 px-4 sm:mx-0 sm:px-0 sm:overflow-visible sm:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
           {displayProducts.map((product, index) => (
             <div
               key={index}
-              className="bg-white rounded-[16px] border border-outline-variant/50 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05),0_20px_25px_-5px_rgba(0,0,0,0.02)] overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_25px_35px_-10px_rgba(0,0,0,0.04)]"
+              className="w-full min-w-full sm:min-w-0 flex-shrink-0 snap-center bg-white rounded-[16px] border border-outline-variant/50 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05),0_20px_25px_-5px_rgba(0,0,0,0.02)] overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_25px_35px_-10px_rgba(0,0,0,0.04)]"
             >
               <Link href={`/products/${product.slug}`} className="h-56 md:h-64 bg-surface-container-low relative overflow-hidden group block">
                 <div

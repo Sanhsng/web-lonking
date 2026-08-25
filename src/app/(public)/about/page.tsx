@@ -12,7 +12,7 @@ export default function AboutPage() {
   return (
     <main className="pt-20">
       {/* Hero Section */}
-      <section className="relative w-full h-auto aspect-[16/10] sm:aspect-auto min-h-0 sm:min-h-[614px] flex items-start sm:items-center justify-center bg-surface-container-highest overflow-hidden pt-4 pb-4 sm:py-24 md:py-32">
+      <section className="relative w-full h-auto aspect-[16/10] sm:aspect-auto min-h-0 sm:min-h-[614px] flex items-start sm:items-end justify-center bg-surface-container-highest overflow-hidden pt-4 pb-4 sm:pt-24 sm:pb-12 md:pt-32 md:pb-16">
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-[center_top] sm:bg-center"
           style={{
@@ -24,11 +24,10 @@ export default function AboutPage() {
         <div className="relative z-10 max-w-container-max mx-auto px-4 sm:px-6 md:px-8 w-full text-center sm:text-left flex flex-col items-center sm:items-start">
           <div className="max-w-2xl bg-black/20 sm:bg-transparent p-3 sm:p-0 rounded-xl sm:rounded-none backdrop-blur-md sm:backdrop-blur-none border border-white/10 sm:border-none">
             <h1 className="font-bold sm:font-headline-xl text-[16px] sm:text-[40px] md:text-headline-xl text-white mb-1.5 sm:mb-6 leading-tight">
-              Nhiều thập kỷ xuất sắc trong ngành máy thiết bị công trình
+              LOVOL – Tập đoàn thiết bị công trình hàng đầu
             </h1>
             <p className="font-body-sm sm:font-body-lg text-[10px] sm:text-body-lg text-surface-variant mb-1 sm:mb-8 line-clamp-3 sm:line-clamp-none">
-              Xây dựng nền móng của ngày mai với sức mạnh không ngừng, kỹ thuật
-              chính xác và cam kết đổi mới từ năm 2013.
+              Với nền tảng công nghệ tiên tiến và năng lực sản xuất mạnh mẽ, LOVOL mang đến những giải pháp máy móc hiệu quả cho các công trình trên toàn thế giới.
             </p>
           </div>
         </div>

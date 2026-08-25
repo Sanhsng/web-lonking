@@ -201,7 +201,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
           onToggleFilter={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-stack-gap mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-stack-gap mb-12">
           {paginatedProducts.map((product) => (
             <CatalogProductCard 
               key={product.slug} 

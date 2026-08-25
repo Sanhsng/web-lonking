@@ -26,14 +26,12 @@ export default async function ContactPage() {
       {/* Mobile Hero Section (Hidden on Desktop) */}
       <section className="sm:hidden relative w-full h-auto flex flex-col">
         {/* Background Image Container */}
-        <div className="relative w-full aspect-[16/10]">
-          <div
-            className="absolute inset-0 w-full h-full bg-cover"
-            style={{
-              backgroundImage: 'url("/images/banners/contact-team-banner.jpg")',
-              backgroundPosition: 'center top'
-            }}
-          ></div>
+        <div className="relative w-full">
+          <img
+            src="/images/banners/contact-team-banner.jpg"
+            alt="Contact Banner"
+            className="w-full h-auto block"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
         </div>
 

@@ -46,14 +46,14 @@ export async function CategoriesGrid() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-6 md:gap-8">
           {displayCategories.map((category, index) => {
             const Icon = category.icon;
             return (
               <Link
                 key={index}
                 href={category.href}
-                className="group relative h-80 rounded-[16px] overflow-hidden bg-white shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05),0_20px_25px_-5px_rgba(0,0,0,0.02)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_25px_35px_-10px_rgba(0,0,0,0.04)]"
+                className="group relative h-40 sm:h-64 md:h-80 rounded-[12px] sm:rounded-[16px] overflow-hidden bg-white shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05),0_20px_25px_-5px_rgba(0,0,0,0.02)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_25px_35px_-10px_rgba(0,0,0,0.04)]"
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
@@ -61,19 +61,19 @@ export async function CategoriesGrid() {
                 ></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 {category.badge && (
-                  <div className="absolute top-4 right-4 bg-tertiary-container text-on-tertiary font-label-sm text-label-sm px-3 py-1 rounded-full uppercase tracking-widest font-bold">
+                  <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-tertiary-container text-on-tertiary text-[9px] sm:text-label-sm px-2 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase tracking-widest font-bold">
                     {category.badge}
                   </div>
                 )}
-                <div className="absolute bottom-0 left-0 w-full p-6 flex flex-col gap-2">
-                  <div className="bg-white/20 backdrop-blur-md w-12 h-12 rounded-full flex items-center justify-center mb-2 border border-white/30">
-                    <Icon className="w-6 h-6 text-white" />
+                <div className="absolute bottom-0 left-0 w-full p-3 sm:p-6 flex flex-col gap-1 sm:gap-2">
+                  <div className="bg-white/20 backdrop-blur-md w-8 h-8 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mb-1 sm:mb-2 border border-white/30">
+                    <Icon className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
                   </div>
-                  <h3 className="font-headline-md text-[24px] text-white font-semibold">
+                  <h3 className="font-headline-md text-[14px] sm:text-[20px] md:text-[24px] text-white font-semibold leading-tight">
                     {category.title}
                   </h3>
-                  <span className="text-white/80 font-label-sm text-label-sm uppercase tracking-wider group-hover:text-secondary-fixed transition-colors flex items-center gap-1 font-semibold">
-                    Khám phá <ChevronRight className="w-4 h-4" />
+                  <span className="text-white/80 font-label-sm text-[10px] sm:text-label-sm uppercase tracking-wider group-hover:text-secondary-fixed transition-colors flex items-center gap-1 font-semibold">
+                    Khám phá <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
                   </span>
                 </div>
               </Link>
