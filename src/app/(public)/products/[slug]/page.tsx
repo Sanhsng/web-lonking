@@ -14,7 +14,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
-  
+
   if (!product) {
     return { title: "Sản phẩm không tồn tại | Lovol Việt Nam" };
   }
@@ -37,7 +37,7 @@ export default async function ProductDetailPage({ params }: Props) {
   }
 
   const { title, productFields, featuredImage, content } = product;
-  
+
   // Images
   const validImages = [
     featuredImage?.node?.sourceUrl,
@@ -66,8 +66,25 @@ export default async function ProductDetailPage({ params }: Props) {
 
   const specifications = specsRaw.filter(spec => !!spec.value);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": title,
+    "image": uniqueImages.length > 0 ? uniqueImages[0] : `${siteConfig.url}/images/banners/about-banner.jpg`,
+    "description": productFields?.shortDescription || title,
+    "brand": {
+      "@type": "Brand",
+      "name": "LOVOL"
+    },
+    "model": productFields?.model || undefined
+  };
+
   return (
     <main className="max-w-container-max mx-auto px-4 md:px-8 pt-24 pb-section-padding-lg">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Breadcrumbs */}
       <nav aria-label="Breadcrumb" className="mb-8">
         <ol className="flex items-center gap-2 text-[15px] md:text-[16px] font-medium text-outline flex-wrap">
@@ -100,11 +117,11 @@ export default async function ProductDetailPage({ params }: Props) {
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-section-padding-lg">
         {/* Left: Gallery */}
         <div className="lg:col-span-7">
-          <ProductGallery 
-            images={uniqueImages} 
-            title={title} 
-            model={productFields?.model} 
-            isNew={productFields?.isNew} 
+          <ProductGallery
+            images={uniqueImages}
+            title={title}
+            model={productFields?.model}
+            isNew={productFields?.isNew}
           />
         </div>
 
@@ -114,11 +131,11 @@ export default async function ProductDetailPage({ params }: Props) {
             {title}
           </h1>
           {productFields?.shortDescription && (
-             <p className="text-body-lg font-body-lg text-on-surface-variant mb-8">
-               {productFields.shortDescription}
-             </p>
+            <p className="text-body-lg font-body-lg text-on-surface-variant mb-8">
+              {productFields.shortDescription}
+            </p>
           )}
-          
+
           <div className="grid grid-cols-2 gap-4 mb-8">
             {specifications.map((spec) => (
               <div
@@ -136,7 +153,7 @@ export default async function ProductDetailPage({ params }: Props) {
           </div>
 
           <div className="flex flex-col gap-4">
-            <Link 
+            <Link
               href={`/contact?product=${slug}#contact-form-section`}
               className="w-full bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed transition-all duration-300 rounded-[16px] px-6 py-4 text-label-md font-bold active:scale-[0.98] flex items-center justify-center gap-2 shadow-sm"
             >
@@ -144,7 +161,7 @@ export default async function ProductDetailPage({ params }: Props) {
               Yêu cầu báo giá
             </Link>
             <div className="flex gap-4">
-              <a 
+              <a
                 href={`tel:${siteConfig.hotline}`}
                 className="flex-1 border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-300 rounded-[16px] px-6 py-3 font-semibold text-label-md active:scale-[0.98] flex items-center justify-center gap-2"
               >

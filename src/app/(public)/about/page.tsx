@@ -4,15 +4,16 @@ import React from "react";
 import { MissionVisionCard } from "@/components/about/MissionVisionCard";
 
 export const metadata: Metadata = {
-  title: "Về chúng tôi | Lovol Việt Nam",
-  description: "Nhiều thập kỷ xuất sắc trong ngành máy thiết bị công trình.",
+  title: "Giới thiệu LOVOL Việt Nam | Máy công trình LOVOL",
+  description:
+    "Tìm hiểu về LOVOL Việt Nam và hệ sinh thái máy công trình LOVOL. Khám phá lịch sử, công nghệ, năng lực sản xuất và các giải pháp thiết bị cho xây dựng, khai thác.",
 };
 
 export default function AboutPage() {
   return (
     <main className="pt-20">
       {/* Hero Section */}
-      <section className="relative w-full h-auto aspect-[16/10] sm:aspect-auto min-h-0 sm:min-h-[614px] flex items-start sm:items-end justify-center bg-surface-container-highest overflow-hidden pt-4 pb-4 sm:pt-24 sm:pb-12 md:pt-32 md:pb-16">
+      <section className="relative w-full h-auto aspect-[16/10] sm:aspect-auto min-h-0 sm:min-h-[614px] flex items-end justify-center bg-surface-container-highest overflow-hidden pb-4 sm:pt-24 sm:pb-12 md:pt-32 md:pb-16">
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-[center_top] sm:bg-center"
           style={{

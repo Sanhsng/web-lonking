@@ -41,18 +41,30 @@ export function Header() {
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-on-background/80 backdrop-blur-xl border-b border-outline-variant/30 dark:border-outline/20 shadow-sm dark:shadow-none transition-all duration-300">
-      <div className="flex justify-between items-center w-full px-4 md:px-6 lg:px-8 xl:px-16 h-20 md:h-24">
+      <div className="flex justify-between items-center w-full px-4 md:px-6 lg:px-8 xl:px-16 h-20 md:h-24 relative">
+        {/* Mobile Search Toggle (Left) */}
+        <button
+          aria-label="Tìm kiếm"
+          onClick={() => {
+            setIsSearchOpen(!isSearchOpen);
+            if (isMobileMenuOpen) setIsMobileMenuOpen(false);
+          }}
+          className="lg:hidden text-on-surface p-2 -ml-2 transition-transform active:scale-95 flex items-center justify-center rounded-lg hover:bg-surface-variant/30"
+        >
+          <Search className="w-6 h-6" />
+        </button>
+
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+          className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 lg:left-auto z-10"
         >
           <Image
             src="/logo.png"
             alt="Lovol"
             width={300}
             height={100}
-            className="object-contain h-12 md:h-16 w-auto"
+            className="object-contain h-16 md:h-20 w-auto"
             priority
           />
         </Link>
@@ -64,11 +76,10 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`transition-colors duration-200 ease-in-out text-[14px] xl:text-[15px] font-semibold uppercase tracking-wide whitespace-nowrap px-4 py-2 ${
-                  isActive 
-                    ? "text-primary dark:text-primary-fixed-dim" 
+                className={`transition-colors duration-200 ease-in-out text-[14px] xl:text-[15px] font-semibold uppercase tracking-wide whitespace-nowrap px-4 py-2 ${isActive
+                    ? "text-primary dark:text-primary-fixed-dim"
                     : "text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim"
-                }`}
+                  }`}
               >
                 {link.label}
               </Link>
@@ -155,57 +166,23 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-[16px] font-semibold uppercase tracking-wide px-4 py-3 transition-colors ${
-                  isActive
+                className={`text-[16px] font-semibold uppercase tracking-wide px-4 py-3 transition-colors ${isActive
                     ? "text-primary dark:text-primary-fixed-dim"
                     : "text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim"
-                }`}
+                  }`}
               >
                 {link.label}
               </Link>
             );
           })}
+
+          {/* <hr className="border-outline-variant/30 dark:border-outline/20 my-4 mx-4" />
           
-          <hr className="border-outline-variant/30 dark:border-outline/20 my-4 mx-4" />
-
           <div className="flex items-center gap-4 text-on-surface-variant px-4">
-            {/* <div className="relative">
-              <button
-                aria-label="Đổi ngôn ngữ"
-                onClick={() => setIsLangOpen(!isLangOpen)}
-                className="hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all duration-300 px-3 py-2 rounded-full active:scale-95 flex items-center justify-center gap-1.5"
-              >
-                <Globe className="w-6 h-6" />
-                <span className="font-bold text-label-sm">{lang}</span>
-              </button>
+             Language selector commented out 
+          </div> */}
 
-              {isLangOpen && (
-                <div className="absolute bottom-full left-0 mb-2 w-32 bg-white dark:bg-surface-container-lowest border border-outline-variant/30 rounded-xl shadow-lg py-2 flex flex-col z-50">
-                  <button
-                    onClick={() => { setLang("VI"); setIsLangOpen(false); }}
-                    className={`text-left px-4 py-2.5 text-label-md hover:bg-surface-container-low transition-colors ${lang === "VI" ? "text-primary font-bold" : "text-on-surface"}`}
-                  >
-                    Tiếng Việt
-                  </button>
-                  <button
-                    onClick={() => { setLang("EN"); setIsLangOpen(false); }}
-                    className={`text-left px-4 py-2.5 text-label-md hover:bg-surface-container-low transition-colors ${lang === "EN" ? "text-primary font-bold" : "text-on-surface"}`}
-                  >
-                    English
-                  </button>
-                </div>
-              )}
-            </div> */}
-            <button
-              aria-label="Tìm kiếm"
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
-              className="hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all duration-300 p-2 rounded-full active:scale-95 flex items-center justify-center"
-            >
-              <Search className="w-6 h-6" />
-            </button>
-          </div>
-
-          <div className="flex flex-col gap-4 mt-2">
+          <div className="flex flex-col gap-4 mt-4">
             <a
               href={`tel:${siteConfig.hotline}`}
               className="text-[14px] font-bold text-primary dark:text-primary-fixed-dim whitespace-nowrap hover:underline"

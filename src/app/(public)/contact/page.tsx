@@ -36,12 +36,12 @@ export default async function ContactPage() {
         </div>
 
         {/* Content Card */}
-        <div className="relative z-10 w-full max-w-container-max mx-auto px-4 flex justify-center -mt-8">
-          <div className="bg-white/90 backdrop-blur-md border border-surface-variant p-6 rounded-xl w-full shadow-xl">
-            <h1 className="font-bold text-[24px] text-on-background mb-2 text-center leading-tight">
+        <div className="relative z-10 w-full px-6 flex justify-center -mt-10">
+          <div className="bg-white/90 backdrop-blur-md border border-surface-variant p-4 sm:p-5 rounded-xl w-full shadow-lg">
+            <h1 className="font-bold text-[20px] text-on-background mb-1.5 text-center leading-tight">
               Liên hệ với chúng tôi
             </h1>
-            <p className="font-body-md text-[14px] text-on-surface-variant text-center">
+            <p className="font-body-md text-[13px] text-on-surface-variant text-center leading-relaxed">
               Các chuyên gia kỹ thuật và đội ngũ hỗ trợ mua sắm của chúng tôi
               luôn sẵn sàng hỗ trợ bạn với các thắc mắc về kỹ thuật, giải pháp
               quản lý đội xe và báo giá tùy chỉnh.
@@ -77,7 +77,7 @@ export default async function ContactPage() {
       </section>
 
       {/* Contact Grid Section (Bento Style) */}
-      <section id="contact-form-section" className="py-12 md:py-section-padding-lg w-full max-w-container-max mx-auto px-4 sm:px-6 md:px-8 mt-12 md:mt-8 scroll-mt-24">
+      <section id="contact-form-section" className="pt-8 pb-0 md:pb-section-padding-lg md:pt-section-padding-lg w-full max-w-container-max mx-auto px-4 sm:px-6 md:px-8 mt-4 md:mt-8 scroll-mt-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-gutter">
           {/* Form (Left Side - 7 cols) */}
           <div className="lg:col-span-7 bg-surface-container-lowest rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.02),0_20px_40px_rgba(0,0,0,0.04)] border border-surface-variant p-6 sm:p-8 md:p-10">
@@ -149,7 +149,7 @@ export default async function ContactPage() {
       </section>
 
       {/* Google Map Preview Section */}
-      <section className="py-8 md:py-12 w-full max-w-container-max mx-auto px-4 sm:px-6 md:px-8">
+      <section className="pt-6 pb-8 md:py-12 w-full max-w-container-max mx-auto px-4 sm:px-6 md:px-8">
         <div className="w-full h-[300px] md:h-[400px] rounded-xl overflow-hidden shadow-sm border border-surface-variant bg-surface-container-low relative group">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.8532934096907!2d106.8954775096208!3d10.898752056882667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174dfe0803a549b%3A0x195b942650241bd9!2zQ8OUTkcgVFkgQ-G7lCBQSOG6pk4gVEhJ4bq-VCBC4buKIDM2NSAtIENISSBOSMOBTkggTUnhu4BOIE5BTQ!5e0!3m2!1svi!2s!4v1787564597113!5m2!1svi!2s"

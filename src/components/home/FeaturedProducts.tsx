@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Weight, Cog, ShoppingBasket, BatteryCharging, VolumeX } from "lucide-react";
 import { getProducts } from "@/services/products";
+import { FeaturedProductsSlider } from "./FeaturedProductsSlider";
 
 export async function FeaturedProducts() {
   const wpProducts = await getProducts();
@@ -8,12 +9,12 @@ export async function FeaturedProducts() {
 
   const displayProducts = featuredWpProducts.map(wp => {
     const isElectric = wp.productFields?.powerType?.some(t => ["electric", "điện", "dien"].includes(t.trim().toLowerCase()));
-    
+
     const specs = [];
     if (wp.productFields?.operatingWeight) {
       specs.push({ icon: Weight, label: "Trọng lượng hoạt động", value: wp.productFields.operatingWeight });
     }
-    
+
     if (isElectric) {
       if (wp.productFields?.loIPin) {
         specs.push({ icon: BatteryCharging, label: "Dung lượng pin", value: wp.productFields.loIPin });
@@ -21,13 +22,13 @@ export async function FeaturedProducts() {
       specs.push({ icon: VolumeX, label: "Độ ồn", value: "< 65 dB(A)" });
     } else {
       const isBulldozer = wp.productCategories?.nodes?.some(c => c.name.toLowerCase().includes("máy ủi")) || !!wp.productFields?.ironingCapacity;
-      
+
       if (isBulldozer && wp.productFields?.ironingCapacity) {
         specs.push({ icon: Cog, label: "Công suất ủi", value: wp.productFields.ironingCapacity });
       } else if (wp.productFields?.ratedPower) {
         specs.push({ icon: Cog, label: "Công suất động cơ", value: wp.productFields.ratedPower });
       }
-      
+
       if (wp.productFields?.bucketCapacity) {
         specs.push({ icon: ShoppingBasket, label: isBulldozer ? "Dung tích ủi" : "Dung tích gầu", value: wp.productFields.bucketCapacity });
       }
@@ -42,7 +43,7 @@ export async function FeaturedProducts() {
     };
   });
   return (
-    <section className="py-12 md:py-section-padding-lg bg-surface relative overflow-hidden">
+    <section className="pt-8 pb-12 md:pt-12 md:pb-section-padding-lg bg-surface relative overflow-hidden">
       <div className="max-w-container-max mx-auto px-4 sm:px-6 md:px-8">
         <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16">
           <h2 className="font-headline-lg text-[28px] sm:text-[32px] md:text-headline-lg text-on-surface mb-3 md:mb-4 font-bold leading-tight">
@@ -54,7 +55,7 @@ export async function FeaturedProducts() {
           </p>
         </div>
 
-        <div className="flex overflow-x-auto pb-6 snap-x snap-mandatory gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 md:gap-8 -mx-4 px-4 sm:mx-0 sm:px-0 sm:overflow-visible sm:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+        <FeaturedProductsSlider>
           {displayProducts.map((product, index) => (
             <div
               key={index}
@@ -79,11 +80,10 @@ export async function FeaturedProducts() {
                     return (
                       <div
                         key={sIdx}
-                        className={`flex justify-between items-center py-2 ${
-                          sIdx !== product.specs.length - 1
+                        className={`flex justify-between items-center py-2 ${sIdx !== product.specs.length - 1
                             ? "border-b border-surface-container"
                             : ""
-                        }`}
+                          }`}
                       >
                         <span className="text-on-surface-variant flex items-center gap-2 font-label-md">
                           <Icon className="w-[18px] h-[18px]" /> {spec.label}
@@ -104,7 +104,7 @@ export async function FeaturedProducts() {
               </div>
             </div>
           ))}
-        </div>
+        </FeaturedProductsSlider>
       </div>
     </section>
   );

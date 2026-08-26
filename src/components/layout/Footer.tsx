@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Construction, Share2 } from "lucide-react";
+import { Construction } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { FooterShareButton } from "./FooterShareButton";
 
 export function Footer() {
   return (
@@ -121,12 +122,7 @@ export function Footer() {
           </p>
         </div>
         <div className="flex gap-4">
-          <button
-            aria-label="Chia sẻ"
-            className="text-surface-variant/50 hover:text-white transition-colors"
-          >
-            <Share2 className="w-5 h-5" />
-          </button>
+          <FooterShareButton />
         </div>
       </div>
     </footer>

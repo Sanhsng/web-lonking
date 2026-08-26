@@ -12,7 +12,7 @@ export function PageHeader({ title, description, breadcrumbItems }: PageHeaderPr
       {breadcrumbItems && breadcrumbItems.length > 0 && (
         <Breadcrumb items={breadcrumbItems} />
       )}
-      <h1 className="text-headline-xl font-bold text-on-surface mb-4">
+      <h1 className="text-[32px] md:text-headline-xl font-bold text-on-surface mb-4">
         {title}
       </h1>
       {description && (

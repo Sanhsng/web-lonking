@@ -72,7 +72,7 @@ export default async function BlogListPage(props: {
   const sortedCategories = [...wpCategories].sort((a, b) => {
     const indexA = categoryOrder.indexOf(a.slug);
     const indexB = categoryOrder.indexOf(b.slug);
-    
+
     if (indexA !== -1 && indexB !== -1) return indexA - indexB;
     if (indexA !== -1) return -1;
     if (indexB !== -1) return 1;
@@ -95,15 +95,14 @@ export default async function BlogListPage(props: {
   }));
 
   return (
-    <main className="pt-24 pb-section-padding-lg max-w-container-max mx-auto px-margin-mobile md:px-8">
+    <main className="pt-24 pb-4 md:pb-8 max-w-container-max mx-auto px-margin-mobile md:px-8">
       {/* Hero Section */}
       <section className="py-8 md:py-20 text-center max-w-3xl mx-auto px-4">
         <h1 className="font-headline-xl text-[36px] sm:text-[44px] md:text-[56px] md:leading-[64px] text-on-background mb-4 md:mb-6 leading-tight">
           Góc nhìn Lovol
         </h1>
         <p className="font-body-lg text-[15px] sm:text-body-lg text-on-surface-variant">
-          Tin tức và cập nhật ngành công nghiệp máy móc hạng nặng. Phân tích
-          chuyên gia, mẹo bảo trì và những tiến bộ công nghệ mới nhất.
+          Những tin tức, xu hướng công nghệ và kiến thức hữu ích dành cho doanh nghiệp và người vận hành máy công trình.
         </p>
       </section>
 
@@ -113,11 +112,10 @@ export default async function BlogListPage(props: {
           <Link
             key={cat.id}
             href={cat.id === "all" ? "/blog" : `/blog?category=${cat.id}`}
-            className={`text-[12px] sm:text-label-md sm:font-label-md px-3 py-1.5 sm:px-5 sm:py-2 rounded-full transition-all ${
-              cat.active
+            className={`text-[12px] sm:text-label-md sm:font-label-md px-3 py-1.5 sm:px-5 sm:py-2 rounded-full transition-all ${cat.active
                 ? "bg-primary text-white shadow-sm hover:scale-95 transition-transform"
                 : "bg-surface-container-low text-on-surface-variant hover:bg-surface-variant border border-outline-variant/50 transition-colors"
-            }`}
+              }`}
           >
             {cat.label}
           </Link>
@@ -164,7 +162,7 @@ export default async function BlogListPage(props: {
 
       {/* Post Grid */}
       {regularPosts.length > 0 ? (
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-gutter mb-12 md:mb-section-padding-lg px-4 md:px-0">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-gutter mb-8 md:mb-12 px-4 md:px-0">
           {regularPosts.map((post) => (
             <BlogCard key={post.slug} {...post} />
           ))}
@@ -177,7 +175,7 @@ export default async function BlogListPage(props: {
 
       {/* Pagination */}
       {allPosts.length > 0 && (
-        <div className="mb-section-padding-lg flex justify-center">
+        <div className="mb-8 md:mb-12 flex justify-center">
           <Pagination />
         </div>
       )}

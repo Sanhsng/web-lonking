@@ -6,6 +6,7 @@ import { ChevronRight, Share2, Link as LinkIcon, Mail, ArrowRight } from "lucide
 import { BlogCard } from "@/components/blog/BlogCard";
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import { getPostBySlug, getPosts } from "@/services/blog";
+import { siteConfig } from "@/config/site";
 
 export const revalidate = 60;
 
@@ -16,14 +17,14 @@ function processHtmlAndExtractTOC(html: string) {
   const processedHtml = html.replace(/<h([1-6])([^>]*)>([\s\S]*?)<\/h\1>/gi, (match, levelStr, attrs, content) => {
     const level = parseInt(levelStr, 10);
     const cleanText = content.replace(/(<([^>]+)>)/gi, "").trim();
-    
+
     let id = cleanText
       .toLowerCase()
       .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
       .replace(/đ/g, "d")
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "");
-    
+
     if (!id) id = `heading-${Math.random().toString(36).substring(2, 11)}`;
 
     let finalId = id;
@@ -55,9 +56,9 @@ export async function generateMetadata(props: {
   if (!post) {
     return { title: "Không tìm thấy trang" };
   }
-  
+
   const plainExcerpt = post.excerpt?.replace(/(<([^>]+)>)/gi, "") || "";
-  
+
   return {
     title: `${post.title} - Titan Heavy`,
     description: plainExcerpt,
@@ -77,7 +78,7 @@ export default async function BlogDetailPage(props: {
   // Fetch all posts to get related posts (e.g. latest 3 excluding current)
   const allPosts = await getPosts();
   const relatedPostsData = allPosts.filter(p => p.slug !== post.slug).slice(0, 3);
-  
+
   const relatedPosts = relatedPostsData.map(p => {
     const plainExcerpt = p.excerpt?.replace(/(<([^>]+)>)/gi, "") || "Không có mô tả.";
     return {
@@ -103,8 +104,25 @@ export default async function BlogDetailPage(props: {
 
   const { processedHtml, toc } = processHtmlAndExtractTOC(post.content || "");
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "image": post.featuredImage?.node?.sourceUrl || `${siteConfig.url}/images/banners/about-banner.jpg`,
+    "datePublished": new Date(post.date).toISOString(),
+    "dateModified": new Date(post.date).toISOString(),
+    "author": {
+      "@type": "Person",
+      "name": post.blogFields?.authorName || "LOVOL Việt Nam"
+    }
+  };
+
   return (
     <div className="flex-grow pt-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Breadcrumbs & Meta */}
       <section className="max-w-container-max mx-auto px-margin-mobile md:px-8 py-8">
         <nav className="flex items-center gap-2 text-[15px] md:text-[16px] font-medium text-outline mb-8">
@@ -131,10 +149,10 @@ export default async function BlogDetailPage(props: {
           <h1 className="text-headline-xl font-bold text-on-primary-fixed">
             {post.title}
           </h1>
-          
+
           {/* If excerpt exists, show it as introductory text */}
           {post.excerpt && (
-            <div 
+            <div
               className="text-body-lg text-on-surface-variant max-w-3xl"
               dangerouslySetInnerHTML={{ __html: post.excerpt }}
             />
@@ -208,7 +226,7 @@ export default async function BlogDetailPage(props: {
           </aside>
 
           {/* Article Body */}
-          <article 
+          <article
             className="col-span-1 lg:col-span-8 lg:col-start-4 text-on-surface-variant text-lg leading-relaxed
               [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:text-on-surface [&_h2]:mt-10 [&_h2]:mb-4 
               [&_h3]:text-2xl [&_h3]:font-bold [&_h3]:text-on-surface [&_h3]:mt-8 [&_h3]:mb-4
