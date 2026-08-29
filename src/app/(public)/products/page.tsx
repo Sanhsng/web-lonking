@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ChevronRight, Weight, Cog, Zap, Wrench, Fuel, Monitor, Container } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { ProductCatalog, Product } from "@/components/products/catalog/ProductCatalog";
-import { getProducts } from "@/services/products";
+import { getProducts, getProductCategories } from "@/services/products";
 
 export const metadata: Metadata = {
   title: "Máy công trình LOVOL chính hãng | LOVOL Việt Nam",
@@ -14,8 +14,18 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export default async function ProductsPage() {
-  const wpProducts = await getProducts();
+type Props = {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export default async function ProductsPage({ searchParams }: Props) {
+  const resolvedSearchParams = await searchParams;
+  const categoryParam = resolvedSearchParams.category as string | undefined;
+
+  const [wpProducts, wpCategories] = await Promise.all([
+    getProducts(),
+    getProductCategories()
+  ]);
 
   const mappedProducts: Product[] = wpProducts.map((wp) => {
     const isElectric = wp.productFields?.powerType?.some(t => ["electric", "điện", "dien"].includes(t.trim().toLowerCase()));
@@ -46,15 +56,32 @@ export default async function ProductsPage() {
     };
   });
 
+  let pageTitle = "Danh mục sản phẩm LOVOL";
+  let pageDescription = "Khám phá các dòng máy công trình LOVOL với hiệu suất mạnh mẽ, độ bền vượt trội và công nghệ tiên tiến, đáp ứng đa dạng nhu cầu vận hành.";
+  let breadcrumbItems: { label: string; href?: string }[] = [
+    { label: "Trang chủ", href: "/" },
+    { label: "Sản phẩm" },
+  ];
+  
+  if (categoryParam) {
+    const matchedCategory = wpCategories.find(c => c.slug === categoryParam);
+    if (matchedCategory) {
+      pageTitle = `Danh mục sản phẩm ${matchedCategory.name}`;
+      pageDescription = `Khám phá các dòng ${matchedCategory.name.toLowerCase()} LOVOL với hiệu suất mạnh mẽ, độ bền vượt trội.`;
+      breadcrumbItems = [
+        { label: "Trang chủ", href: "/" },
+        { label: "Sản phẩm", href: "/products" },
+        { label: matchedCategory.name },
+      ];
+    }
+  }
+
   return (
-    <div className="pt-32 pb-section-padding-lg px-margin-mobile md:px-8 max-w-container-max mx-auto">
+    <div className="pt-24 md:pt-32 pb-section-padding-lg px-margin-mobile md:px-8 max-w-container-max mx-auto">
       <PageHeader
-        title="Danh mục sản phẩm LOVOL"
-        description="Khám phá các dòng máy công trình LOVOL với hiệu suất mạnh mẽ, độ bền vượt trội và công nghệ tiên tiến, đáp ứng đa dạng nhu cầu vận hành."
-        breadcrumbItems={[
-          { label: "Trang chủ", href: "/" },
-          { label: "Sản phẩm" },
-        ]}
+        title={pageTitle}
+        description={pageDescription}
+        breadcrumbItems={breadcrumbItems}
       />
 
       <ProductCatalog products={mappedProducts} />

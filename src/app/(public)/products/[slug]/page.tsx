@@ -50,6 +50,9 @@ export default async function ProductDetailPage({ params }: Props) {
 
   const isElectric = productFields?.powerType?.some(t => t.toLowerCase().includes('electric') || t.toLowerCase().includes('điện'));
   const isBulldozer = product.productCategories?.nodes?.some(c => c.name.toLowerCase().includes("máy ủi")) || !!productFields?.ironingCapacity;
+  const isWheelLoader = product.productCategories?.nodes?.some(c => 
+    c.name.toLowerCase().includes("máy xúc lật") || c.slug.includes("may-xuc-lat")
+  );
 
   // Compile specifications based on available fields
   const specsRaw = [
@@ -57,6 +60,7 @@ export default async function ProductDetailPage({ params }: Props) {
     { label: "Động cơ", value: productFields?.engine },
     { label: isBulldozer ? "Dung tích ủi" : "Dung tích gầu", value: productFields?.bucketCapacity },
     { label: "Trọng lượng vận hành", value: productFields?.operatingWeight },
+    ...(isWheelLoader ? [{ label: "Chiều cao xả tải", value: productFields?.dischargeHeight }] : []),
     { label: "Công suất định mức", value: productFields?.ratedPower },
     { label: "Tải trọng nâng", value: productFields?.liftingCapacity },
     { label: "Công suất ủi", value: productFields?.ironingCapacity },
@@ -126,8 +130,8 @@ export default async function ProductDetailPage({ params }: Props) {
         </div>
 
         {/* Right: Details & CTA */}
-        <div className="lg:col-span-5 flex flex-col justify-center">
-          <h1 className="text-headline-xl font-headline-xl text-on-background mb-4">
+        <div className="lg:col-span-5 flex flex-col justify-center mt-6 lg:mt-0">
+          <h1 className="text-[28px] sm:text-[36px] lg:text-headline-xl font-bold lg:font-headline-xl text-on-background mb-4 leading-tight tracking-tight">
             {title}
           </h1>
           {productFields?.shortDescription && (

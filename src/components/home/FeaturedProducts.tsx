@@ -46,9 +46,12 @@ export async function FeaturedProducts() {
     <section className="pt-8 pb-12 md:pt-12 md:pb-section-padding-lg bg-surface relative overflow-hidden">
       <div className="max-w-container-max mx-auto px-4 sm:px-6 md:px-8">
         <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16">
-          <h2 className="font-headline-lg text-[28px] sm:text-[32px] md:text-headline-lg text-on-surface mb-3 md:mb-4 font-bold leading-tight">
-            Model nổi bật
-          </h2>
+          <div className="inline-block">
+            <div className="w-full h-1.5 bg-[#F2A200] mb-2 sm:mb-3 rounded-full"></div>
+            <h2 className="font-headline-lg text-[28px] sm:text-[32px] md:text-headline-lg text-on-surface mb-3 md:mb-4 font-bold leading-tight">
+              Model nổi bật
+            </h2>
+          </div>
           <p className="text-on-surface-variant text-body-lg font-body-lg">
             Khám phá các thiết bị nổi bật của chúng tôi, đại diện cho đỉnh cao
             trong khả năng kỹ thuật và thiết kế của Lovol.

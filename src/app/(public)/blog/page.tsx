@@ -98,9 +98,12 @@ export default async function BlogListPage(props: {
     <main className="pt-24 pb-4 md:pb-8 max-w-container-max mx-auto px-margin-mobile md:px-8">
       {/* Hero Section */}
       <section className="py-8 md:py-20 text-center max-w-3xl mx-auto px-4">
-        <h1 className="font-headline-xl text-[36px] sm:text-[44px] md:text-[56px] md:leading-[64px] text-on-background mb-4 md:mb-6 leading-tight">
-          Góc nhìn Lovol
-        </h1>
+        <div className="inline-block text-left sm:text-center">
+          <div className="w-full h-1.5 bg-[#F2A200] mb-3 sm:mb-4 rounded-full"></div>
+          <h1 className="font-headline-xl text-[36px] sm:text-[44px] md:text-[56px] md:leading-[64px] text-on-background mb-4 md:mb-6 leading-tight font-bold tracking-tight">
+            Góc nhìn Lovol
+          </h1>
+        </div>
         <p className="font-body-lg text-[15px] sm:text-body-lg text-on-surface-variant">
           Những tin tức, xu hướng công nghệ và kiến thức hữu ích dành cho doanh nghiệp và người vận hành máy công trình.
         </p>

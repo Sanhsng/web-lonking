@@ -91,12 +91,29 @@ export function ProductsSidebar({
         ${isMobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}
         md:relative md:inset-auto md:w-auto md:bg-transparent md:z-auto md:p-0 md:translate-x-0 md:col-span-3 md:sticky md:top-28 md:max-h-[calc(100vh-8rem)] md:pr-4 md:shadow-none md:block
       `}>
-        {/* Mobile Header */}
-        <div className="flex justify-between items-center mb-6 md:hidden">
-          <h3 className="font-headline-sm font-bold text-on-surface">Bộ lọc</h3>
-          <button onClick={onClose} className="p-2 -mr-2 text-outline hover:text-on-surface rounded-full hover:bg-surface-container-low transition-colors">
-            <X className="w-5 h-5" />
-          </button>
+        {/* Header */}
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="font-headline-sm font-bold text-on-surface hidden md:block">Bộ lọc</h3>
+          <h3 className="font-headline-sm font-bold text-on-surface md:hidden">Bộ lọc</h3>
+          
+          <div className="flex items-center gap-2">
+            {(searchQuery !== "" || selectedCategories.length > 0 || selectedPowerType !== "Tất cả" || weightRange[0] !== 0 || weightRange[1] !== 150) && (
+              <button 
+                onClick={() => {
+                  setSearchQuery("");
+                  setSelectedCategories([]);
+                  setSelectedPowerType("Tất cả");
+                  setWeightRange([0, 150]);
+                }}
+                className="text-label-md font-semibold text-primary hover:text-primary/80 transition-colors px-2 py-1"
+              >
+                Bỏ lọc
+              </button>
+            )}
+            <button onClick={onClose} className="p-2 -mr-2 text-outline hover:text-on-surface rounded-full hover:bg-surface-container-low transition-colors md:hidden">
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
         
         {/* Search */}

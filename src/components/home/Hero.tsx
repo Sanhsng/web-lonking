@@ -45,24 +45,24 @@ export function Hero({ images, title, description }: HeroProps) {
       </div>
 
       <div className="relative z-10 w-full max-w-container-max mx-auto px-4 sm:px-6 md:px-8 grid grid-cols-1 md:grid-cols-12 gap-2 sm:gap-8 mt-4 sm:mt-0">
-        <div className="md:col-span-10 lg:col-span-8 flex flex-col gap-1.5 sm:gap-6">
+        <div className="md:col-span-10 lg:col-span-8 flex flex-col gap-0.5 sm:gap-6">
           <h1 className="text-[16px] sm:text-[40px] md:text-headline-xl text-white font-black tracking-tighter leading-tight sm:leading-[1.1]">
             {title || "Thiết bị công trình đáng tin cậy cho mọi dự án xây dựng"}
           </h1>
-          <p className="text-[10px] sm:text-body-lg text-surface-variant/90 max-w-xl line-clamp-2 sm:line-clamp-none">
+          <p className="text-[10px] sm:text-body-lg text-surface-variant/90 max-w-xl line-clamp-2 sm:line-clamp-none leading-snug sm:leading-normal">
             {description || "Máy móc cao cấp được thiết kế để mang lại hiệu suất, độ bền và năng suất tối đa trên những công trường khắc nghiệt nhất thế giới. Bền bỉ. Đích thực LOVOL."}
           </p>
-          <div className="flex flex-row items-center sm:items-start justify-start gap-2 sm:gap-4 pt-2 sm:pt-4 w-full">
+          <div className="flex flex-row items-center sm:items-start justify-start gap-2 sm:gap-4 pt-1 sm:pt-4 w-full">
             <Link
               href="/products"
-              className="bg-secondary-container hover:bg-secondary-fixed-dim text-on-secondary-fixed font-semibold text-[10px] sm:text-label-md sm:font-bold px-3 py-2 sm:px-8 sm:py-4 rounded-md sm:rounded-[16px] transition-all duration-200 active:scale-[0.98] shadow-sm sm:shadow-lg uppercase tracking-wider flex justify-center items-center gap-1"
+              className="group bg-secondary-container hover:bg-[#F2A200] text-on-secondary-fixed font-semibold text-[10px] sm:text-label-md sm:font-bold px-3 py-2 sm:px-8 sm:py-4 rounded-md sm:rounded-[16px] transition-all duration-300 active:scale-[0.98] shadow-sm sm:shadow-lg hover:shadow-xl hover:-translate-y-1 uppercase tracking-wider flex justify-center items-center gap-1"
             >
               Xem sản phẩm
-              <ArrowRight className="w-3 h-3 sm:w-5 sm:h-5" />
+              <ArrowRight className="w-3 h-3 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1.5" />
             </Link>
             <Link
               href="/contact"
-              className="bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 font-semibold text-[10px] sm:text-label-md px-3 py-2 sm:px-8 sm:py-4 rounded-md sm:rounded-[16px] transition-all duration-200 active:scale-[0.98] uppercase tracking-wider flex justify-center items-center gap-1 text-center"
+              className="bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/40 hover:-translate-y-1 font-semibold text-[10px] sm:text-label-md px-3 py-2 sm:px-8 sm:py-4 rounded-md sm:rounded-[16px] transition-all duration-300 active:scale-[0.98] uppercase tracking-wider flex justify-center items-center gap-1 text-center hover:shadow-lg"
             >
               Yêu cầu tư vấn
             </Link>

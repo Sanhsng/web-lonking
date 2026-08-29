@@ -57,6 +57,12 @@ export function Header() {
         {/* Logo */}
         <Link
           href="/"
+          onClick={(e) => {
+            if (pathname === "/") {
+              e.preventDefault();
+              window.location.reload();
+            }
+          }}
           className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 lg:left-auto z-10"
         >
           <Image

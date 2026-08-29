@@ -42,7 +42,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
       if (saved) {
         try {
           setLikedProducts(JSON.parse(saved));
-        } catch (e) {}
+        } catch (e) { }
       }
     }
   }, []);
@@ -67,7 +67,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
       if (q) {
         setSearchQuery(q);
       }
-      
+
       const catSlug = params.get("category");
       if (catSlug) {
         const matchedProduct = products.find(p => p.categorySlug === catSlug);
@@ -99,9 +99,9 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
     return products.filter((p) => {
       // 1. Tìm kiếm tổng hợp (Tên, Danh mục, Mô tả) - Bỏ qua dấu tiếng Việt
       if (searchQuery) {
-        const normalize = (str: string) => 
+        const normalize = (str: string) =>
           str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-        
+
         const q = normalize(searchQuery);
         const matchTitle = normalize(p.title).includes(q);
         const matchCategory = normalize(p.category).includes(q);
@@ -123,7 +123,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
       // 4. Lọc theo trọng lượng
       let pWeight = p.weight;
       if (pWeight > 1000) pWeight = pWeight / 1000; // Convert kg to tons if needed
-      
+
       if (pWeight < weightRange[0]) {
         return false;
       }
@@ -177,6 +177,14 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
     currentPage * ITEMS_PER_PAGE
   );
 
+  const hasFilters = searchQuery !== "" || selectedCategories.length > 0 || selectedPowerType !== "Tất cả" || weightRange[0] !== 0 || weightRange[1] !== 150;
+  const handleClearFilters = () => {
+    setSearchQuery("");
+    setSelectedCategories([]);
+    setSelectedPowerType("Tất cả");
+    setWeightRange([0, 150]);
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
       <ProductsSidebar
@@ -194,23 +202,26 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
       />
 
       <div className="md:col-span-9 flex flex-col">
-        <ProductsToolbar 
-          totalCount={filteredProducts.length} 
+        <ProductsToolbar
+          totalCount={filteredProducts.length}
           sortBy={sortBy}
           setSortBy={setSortBy}
           onToggleFilter={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
+          selectedCategories={selectedCategories}
+          hasFilters={hasFilters}
+          onClearFilters={handleClearFilters}
         />
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-stack-gap mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-stack-gap mb-4 md:mb-6">
           {paginatedProducts.map((product) => (
-            <CatalogProductCard 
-              key={product.slug} 
-              {...product} 
+            <CatalogProductCard
+              key={product.slug}
+              {...product}
               isLiked={likedProducts.includes(product.slug)}
               onToggleLike={toggleLike}
             />
           ))}
-          
+
           {filteredProducts.length === 0 && (
             <div className="col-span-full text-center py-12 text-on-surface-variant bg-surface-container-lowest rounded-2xl border border-outline-variant/30">
               Không tìm thấy sản phẩm nào phù hợp với bộ lọc hiện tại.
@@ -219,7 +230,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
         </div>
 
         {totalPages > 0 && (
-          <Pagination 
+          <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={setCurrentPage}
