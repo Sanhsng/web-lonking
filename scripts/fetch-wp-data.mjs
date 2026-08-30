@@ -80,6 +80,7 @@ const QUERIES = {
             loIPin
             powerType
             shortDescription
+            dischargeHeight
             isNew
             isFeatured
             productGallery { node { sourceUrl } }
