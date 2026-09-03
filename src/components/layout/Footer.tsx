@@ -100,9 +100,9 @@ export function Footer() {
             địa chỉ
           </h4>
           <p className="text-[14px] md:text-[15px] leading-relaxed text-surface-variant/70 mb-2 break-words">
-            Miền Bắc: Phù Dực 1, Phù Đổng, Gia Lâm, Hà Nội
+            TRỤ SỞ ĐKKD: Thôn Phù Dực 1, Xã Phù Đồng, TP. Hà Nội
             <br />
-            Miền Nam: Đường D5, KDC Cường Thuận, P.Phước Tân, TP.Biên Hòa, Đồng Nai
+            VĂN PHÒNG ĐẠI DIỆN: 36Y5 KDT Izumi, P. Long Hưng, TP. Đồng Nai
           </p>
           <a
             href={`tel:${siteConfig.hotline}`}
