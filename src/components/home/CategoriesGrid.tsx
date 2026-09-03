@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, ChevronRight, Truck, Zap, Tractor, Wrench, Bus, Forklift } from "lucide-react";
 
 import { getProductCategories } from "@/services/products";
@@ -58,10 +59,13 @@ export async function CategoriesGrid() {
                 href={category.href}
                 className="group relative h-40 sm:h-64 md:h-80 rounded-[12px] sm:rounded-[16px] overflow-hidden bg-white shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05),0_20px_25px_-5px_rgba(0,0,0,0.02)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_25px_35px_-10px_rgba(0,0,0,0.04)]"
               >
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                  style={{ backgroundImage: `url('${category.image}')` }}
-                ></div>
+                <Image
+                  src={category.image}
+                  alt={category.title}
+                  fill
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 {category.badge && (
                   <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-tertiary-container text-on-tertiary text-[9px] sm:text-label-sm px-2 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase tracking-widest font-bold">

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 const defaultHeroImages = [
@@ -35,11 +36,19 @@ export function Hero({ images, title, description }: HeroProps) {
         {heroImages.map((src, index) => (
           <div
             key={index}
-            className={`absolute inset-0 w-full h-full bg-cover bg-[center_top] sm:bg-center transition-opacity duration-[2000ms] ease-in-out ${
+            className={`absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ease-in-out ${
               index === currentImageIndex ? "opacity-100" : "opacity-0"
             }`}
-            style={{ backgroundImage: `url("${src}")` }}
-          ></div>
+          >
+            <Image
+              src={src}
+              alt={title || "Máy Công Trình Lovol"}
+              fill
+              priority={index === 0}
+              className="object-cover object-[center_top] sm:object-center"
+              sizes="100vw"
+            />
+          </div>
         ))}
         <div className="absolute inset-0 bg-gradient-to-t from-[#001b3b]/95 via-[#001b3b]/50 to-transparent sm:bg-gradient-to-r sm:from-[#001b3b]/85 sm:to-[#001b3b]/40"></div>
       </div>

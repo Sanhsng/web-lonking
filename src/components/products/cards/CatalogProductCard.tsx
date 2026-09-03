@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Heart, ArrowRight } from "lucide-react";
 import React from "react";
 
@@ -33,10 +34,13 @@ export function CatalogProductCard({
             </span>
           </div>
         )}
-        <div
-          className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-700 ease-out"
-          style={{ backgroundImage: `url(${image})` }}
-        ></div>
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
       </Link>
       <div className="p-3 sm:p-5 lg:p-6 flex flex-col flex-grow">
         <div className="flex justify-between items-start mb-1 sm:mb-2 gap-1 sm:gap-2">
