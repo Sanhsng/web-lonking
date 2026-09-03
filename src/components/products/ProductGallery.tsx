@@ -23,6 +23,7 @@ export function ProductGallery({ images, title, model, isNew }: ProductGalleryPr
           src={mainImage}
           alt={title}
           fill
+          priority
           className="object-cover"
           unoptimized
         />
@@ -37,13 +38,13 @@ export function ProductGallery({ images, title, model, isNew }: ProductGalleryPr
           </div>
         )}
       </div>
-      
+
       {/* Gallery Thumbnails */}
       {images.length > 1 && (
         <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-4">
           {images.map((imgSrc, index) => (
-            <button 
-              key={index} 
+            <button
+              key={index}
               onClick={() => setSelectedIndex(index)}
               className={`rounded-lg overflow-hidden border relative aspect-[4/3] ${index === selectedIndex ? 'border-2 border-primary' : 'border-outline-variant/50 hover:border-primary/50 opacity-70 hover:opacity-100'} transition-colors`}
             >
