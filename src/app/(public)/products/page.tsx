@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import Link from "next/link";
 import { ChevronRight, Weight, Cog, Zap, Wrench, Fuel, Monitor, Container } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -62,7 +63,7 @@ export default async function ProductsPage({ searchParams }: Props) {
     { label: "Trang chủ", href: "/" },
     { label: "Sản phẩm" },
   ];
-  
+
   if (categoryParam) {
     const matchedCategory = wpCategories.find(c => c.slug === categoryParam);
     if (matchedCategory) {
@@ -84,7 +85,9 @@ export default async function ProductsPage({ searchParams }: Props) {
         breadcrumbItems={breadcrumbItems}
       />
 
-      <ProductCatalog products={mappedProducts} />
+      <Suspense fallback={<div>Đang tải sản phẩm...</div>}>
+        <ProductCatalog products={mappedProducts} />
+      </Suspense>
     </div>
   );
 }

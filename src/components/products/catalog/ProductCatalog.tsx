@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { ProductsSidebar } from "./ProductsSidebar";
 import { ProductsToolbar } from "./ProductsToolbar";
 import { CatalogProductCard } from "../cards/CatalogProductCard";
@@ -25,6 +26,7 @@ interface ProductCatalogProps {
 }
 
 export function ProductCatalog({ products }: ProductCatalogProps) {
+  const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
   // Mặc định không chọn category nào để hiện tất cả (nếu muốn mặc định Máy ủi thì đổi thành ["Máy ủi"])
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -59,24 +61,25 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
     });
   };
 
-  // Lấy keyword tìm kiếm và danh mục từ URL
+  // Lấy keyword tìm kiếm và danh mục từ URL (tự động chạy lại khi tham số URL thay đổi)
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const q = params.get("search");
-      if (q) {
-        setSearchQuery(q);
-      }
-
-      const catSlug = params.get("category");
-      if (catSlug) {
-        const matchedProduct = products.find(p => p.categorySlug === catSlug);
-        if (matchedProduct) {
-          setSelectedCategories([matchedProduct.category]);
-        }
-      }
+    const q = searchParams.get("search");
+    if (q) {
+      setSearchQuery(q);
+    } else {
+      setSearchQuery("");
     }
-  }, [products]);
+
+    const catSlug = searchParams.get("category");
+    if (catSlug) {
+      const matchedProduct = products.find(p => p.categorySlug === catSlug);
+      if (matchedProduct) {
+        setSelectedCategories([matchedProduct.category]);
+      }
+    } else {
+      setSelectedCategories([]);
+    }
+  }, [searchParams, products]);
 
   // Reset page when filters change
   useEffect(() => {
