@@ -5,6 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+  applicationName: siteConfig.name,
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
@@ -63,6 +64,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi" className={inter.variable}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: siteConfig.name,
+              url: siteConfig.url,
+            }),
+          }}
+        />
+      </head>
       <body className="bg-background text-on-surface antialiased font-body-md text-body-md overflow-x-hidden selection:bg-secondary-container selection:text-on-secondary-container">
         {children}
       </body>
