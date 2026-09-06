@@ -77,7 +77,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-background text-on-surface antialiased font-body-md text-body-md overflow-x-hidden selection:bg-secondary-container selection:text-on-secondary-container">
+      <body className="bg-background text-on-surface antialiased font-body-md text-body-md overflow-x-hidden selection:bg-primary selection:text-on-primary">
         {children}
       </body>
     </html>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { Pagination } from "@/components/ui/Pagination";
-import { NewsletterBanner } from "@/components/common/NewsletterBanner";
+import { ContactBanner } from "@/components/common/ContactBanner";
 import { BlogCategory } from "@/types/blog";
 import { getPosts, getCategories } from "@/services/blog";
 
@@ -128,38 +128,39 @@ export default async function BlogListPage(props: {
       {/* Featured Post */}
       {featuredPost && (
         <section className="mb-12 md:mb-section-padding-lg px-4 md:px-0">
-          <article className="bg-surface-container-lowest rounded-[16px] border border-outline-variant/30 overflow-hidden shadow-[0_20px_25px_-5px_rgba(0,0,0,0.05),0_8px_10px_-6px_rgba(0,0,0,0.01)] hover:-translate-y-1 transition-all duration-300 grid md:grid-cols-2 gap-0 relative group">
-            <div className="h-64 md:h-auto w-full bg-surface-variant relative overflow-hidden">
-              <Image
-                src={featuredPost.image}
-                alt={featuredPost.title}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-            <div className="p-8 md:p-12 flex flex-col justify-center bg-white z-10">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="bg-secondary-container text-on-secondary-container font-semibold text-label-sm px-3 py-1 rounded-full uppercase tracking-wider">
-                  Nổi bật
-                </span>
-                <span className="font-label-sm text-on-surface-variant">
-                  {featuredPost.date}
-                </span>
+          <Link href={`/blog/${featuredPost.slug}`} className="block">
+            <article className="bg-surface-container-lowest rounded-[16px] border border-outline-variant/30 overflow-hidden shadow-[0_20px_25px_-5px_rgba(0,0,0,0.05),0_8px_10px_-6px_rgba(0,0,0,0.01)] hover:-translate-y-1 transition-all duration-300 grid md:grid-cols-2 gap-0 relative group">
+              <div className="h-64 md:h-auto w-full bg-surface-variant relative overflow-hidden">
+                <Image
+                  src={featuredPost.image}
+                  alt={featuredPost.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
               </div>
-              <h2 className="font-headline-lg text-headline-lg text-on-background mb-4 group-hover:text-primary transition-colors">
-                {featuredPost.title}
-              </h2>
-              <p className="font-body-md text-on-surface-variant mb-8 line-clamp-3">
-                {featuredPost.description}
-              </p>
-              <Link
-                href={`/blog/${featuredPost.slug}`}
-                className="inline-flex items-center gap-2 font-semibold text-label-md text-primary hover:text-primary-container transition-colors w-fit"
-              >
-                Đọc chi tiết <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
-          </article>
+              <div className="p-8 md:p-12 flex flex-col justify-center bg-white z-10">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="bg-secondary-container text-on-secondary-container font-semibold text-label-sm px-3 py-1 rounded-full uppercase tracking-wider">
+                    Nổi bật
+                  </span>
+                  <span className="font-label-sm text-on-surface-variant">
+                    {featuredPost.date}
+                  </span>
+                </div>
+                <h2 className="font-headline-lg text-headline-lg text-on-background mb-4 group-hover:text-primary transition-colors">
+                  {featuredPost.title}
+                </h2>
+                <p className="font-body-md text-on-surface-variant mb-8 line-clamp-3">
+                  {featuredPost.description}
+                </p>
+                <div
+                  className="inline-flex items-center gap-2 font-semibold text-label-md text-primary group-hover:text-primary-container transition-colors w-fit"
+                >
+                  Đọc chi tiết <ArrowRight className="w-5 h-5" />
+                </div>
+              </div>
+            </article>
+          </Link>
         </section>
       )}
 
@@ -183,8 +184,8 @@ export default async function BlogListPage(props: {
         </div>
       )}
 
-      {/* Newsletter Banner */}
-      <NewsletterBanner />
+      {/* Contact Banner */}
+      <ContactBanner />
     </main>
   );
 }

@@ -2,9 +2,10 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ChevronRight, Share2, Link as LinkIcon, Mail, ArrowRight } from "lucide-react";
+import { ChevronRight, ArrowRight } from "lucide-react";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { TableOfContents } from "@/components/blog/TableOfContents";
+import { ShareButtons } from "@/components/blog/ShareButtons";
 import { getPostBySlug, getPosts } from "@/services/blog";
 import { siteConfig } from "@/config/site";
 
@@ -211,17 +212,7 @@ export default async function BlogDetailPage(props: {
               <h3 className="text-label-sm text-outline mb-4 uppercase tracking-wider font-semibold">
                 Chia sẻ Bài viết
               </h3>
-              <div className="flex items-center gap-3">
-                <button className="w-10 h-10 rounded-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-on-surface-variant flex items-center justify-center transition-colors">
-                  <Share2 className="w-5 h-5" />
-                </button>
-                <button className="w-10 h-10 rounded-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-on-surface-variant flex items-center justify-center transition-colors">
-                  <LinkIcon className="w-5 h-5" />
-                </button>
-                <button className="w-10 h-10 rounded-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-on-surface-variant flex items-center justify-center transition-colors">
-                  <Mail className="w-5 h-5" />
-                </button>
-              </div>
+              <ShareButtons title={post.title} />
             </div>
           </aside>
 
