@@ -116,8 +116,8 @@ export default async function BlogListPage(props: {
             key={cat.id}
             href={cat.id === "all" ? "/blog" : `/blog?category=${cat.id}`}
             className={`text-[12px] sm:text-label-md sm:font-label-md px-3 py-1.5 sm:px-5 sm:py-2 rounded-full transition-all ${cat.active
-                ? "bg-primary text-white shadow-sm hover:scale-95 transition-transform"
-                : "bg-surface-container-low text-on-surface-variant hover:bg-surface-variant border border-outline-variant/50 transition-colors"
+              ? "bg-primary text-white shadow-sm hover:scale-95 transition-transform"
+              : "bg-surface-container-low text-on-surface-variant hover:bg-surface-variant border border-outline-variant/50 transition-colors"
               }`}
           >
             {cat.label}
