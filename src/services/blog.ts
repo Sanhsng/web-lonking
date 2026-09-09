@@ -6,6 +6,11 @@ export interface WPPostNode {
   excerpt: string;
   content?: string;
   date: string;
+  seoTitle?: string | null;
+  seoDescription?: string | null;
+  seoFocusKeyword?: string | null;
+  seoOgTitle?: string | null;
+  seoOgDescription?: string | null;
   featuredImage?: {
     node: {
       sourceUrl: string;

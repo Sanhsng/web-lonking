@@ -59,10 +59,32 @@ export async function generateMetadata(props: {
   }
 
   const plainExcerpt = post.excerpt?.replace(/(<([^>]+)>)/gi, "") || "";
+  const title = post.seoTitle || `${post.title} | Lovol Việt Nam`;
+  const description = post.seoDescription || plainExcerpt;
+  const canonicalUrl = `https://lovol.com.vn/blog/${post.slug}`;
+  const imageUrl = post.featuredImage?.node?.sourceUrl || undefined;
 
   return {
-    title: `${post.title} - Titan Heavy`,
-    description: plainExcerpt,
+    title,
+    description,
+    keywords: post.seoFocusKeyword || undefined,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: post.seoOgTitle || title,
+      description: post.seoOgDescription || description,
+      type: "article",
+      siteName: "Lovol Việt Nam",
+      url: canonicalUrl,
+      images: imageUrl ? [{ url: imageUrl }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.seoOgTitle || title,
+      description: post.seoOgDescription || description,
+      images: imageUrl ? [imageUrl] : [],
+    },
   };
 }
 

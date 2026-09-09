@@ -35,6 +35,11 @@ const QUERIES = {
           excerpt
           content
           date
+          seoTitle
+          seoDescription
+          seoFocusKeyword
+          seoOgTitle
+          seoOgDescription
           featuredImage { node { sourceUrl } }
           categories { nodes { name slug } }
           blogFields {
