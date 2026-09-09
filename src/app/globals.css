@@ -141,4 +141,15 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--color-outline-variant);
+    border-radius: 4px;
+  }
 }

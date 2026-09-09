@@ -228,7 +228,7 @@ export default async function BlogDetailPage(props: {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
           {/* Sticky Sidebar (TOC & Share) */}
           <aside className="hidden lg:block lg:col-span-3 relative">
-            <div className="sticky top-32 bg-white/75 backdrop-blur-md border border-white p-6 rounded-[16px] shadow-[0_2px_4px_rgba(0,0,0,0.05),0_10px_20px_-5px_rgba(0,0,0,0.05)]">
+            <div className="sticky top-32 bg-white/75 backdrop-blur-md border border-white p-6 rounded-[16px] shadow-[0_2px_4px_rgba(0,0,0,0.05),0_10px_20px_-5px_rgba(0,0,0,0.05)] max-h-[calc(100vh-10rem)] overflow-y-auto custom-scrollbar">
               <TableOfContents toc={toc} />
 
               <h3 className="text-label-sm text-outline mb-4 uppercase tracking-wider font-semibold">
@@ -241,9 +241,9 @@ export default async function BlogDetailPage(props: {
           {/* Article Body */}
           <article
             className="col-span-1 lg:col-span-8 lg:col-start-4 text-on-surface-variant text-lg leading-relaxed
-              [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:text-on-surface [&_h2]:mt-10 [&_h2]:mb-4 
-              [&_h3]:text-2xl [&_h3]:font-bold [&_h3]:text-on-surface [&_h3]:mt-8 [&_h3]:mb-4
-              [&_h4]:text-xl [&_h4]:font-bold [&_h4]:text-on-surface [&_h4]:mt-6 [&_h4]:mb-3
+              [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:text-on-surface [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:scroll-mt-24
+              [&_h3]:text-2xl [&_h3]:font-bold [&_h3]:text-on-surface [&_h3]:mt-8 [&_h3]:mb-4 [&_h3]:scroll-mt-24
+              [&_h4]:text-xl [&_h4]:font-bold [&_h4]:text-on-surface [&_h4]:mt-6 [&_h4]:mb-3 [&_h4]:scroll-mt-24
               [&_p]:mb-6 
               [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:space-y-2
               [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:space-y-2
