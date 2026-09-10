@@ -64,10 +64,16 @@ export async function generateMetadata(props: {
   const canonicalUrl = `https://lovol.com.vn/blog/${post.slug}`;
   const imageUrl = post.featuredImage?.node?.sourceUrl || undefined;
 
+  const focusKeywords = post.seoFocusKeyword ? [post.seoFocusKeyword] : [];
+  const secondaryKeywords = post.seoSecondaryKeywords
+    ? post.seoSecondaryKeywords.split(",").map(k => k.trim()).filter(Boolean)
+    : [];
+  const allKeywords = [...focusKeywords, ...secondaryKeywords];
+
   return {
     title,
     description,
-    keywords: post.seoFocusKeyword || undefined,
+    keywords: allKeywords.length > 0 ? allKeywords : undefined,
     alternates: {
       canonical: canonicalUrl,
     },

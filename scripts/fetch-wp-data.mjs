@@ -38,6 +38,7 @@ const QUERIES = {
           seoTitle
           seoDescription
           seoFocusKeyword
+          seoSecondaryKeywords
           seoOgTitle
           seoOgDescription
           featuredImage { node { sourceUrl } }

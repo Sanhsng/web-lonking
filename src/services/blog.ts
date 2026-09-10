@@ -9,6 +9,7 @@ export interface WPPostNode {
   seoTitle?: string | null;
   seoDescription?: string | null;
   seoFocusKeyword?: string | null;
+  seoSecondaryKeywords?: string | null;
   seoOgTitle?: string | null;
   seoOgDescription?: string | null;
   featuredImage?: {
