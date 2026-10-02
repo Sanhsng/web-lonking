@@ -2,7 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    qualities: [25, 50, 75, 80, 90, 100],
+    formats: ['image/webp'],
+    deviceSizes: [640, 768, 1024, 1280, 1920],
+    imageSizes: [128, 256, 384],
     remotePatterns: [
       {
         protocol: 'https',

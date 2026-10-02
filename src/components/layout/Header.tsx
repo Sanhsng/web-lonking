@@ -72,6 +72,7 @@ export function Header() {
             height={100}
             className="object-contain h-16 md:h-20 w-auto"
             priority
+            unoptimized
           />
         </Link>
         {/* Navigation Links (Desktop) */}

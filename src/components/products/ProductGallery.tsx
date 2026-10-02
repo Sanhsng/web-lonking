@@ -25,7 +25,7 @@ export function ProductGallery({ images, title, model, isNew }: ProductGalleryPr
           fill
           priority
           className="object-cover"
-          unoptimized
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
         {model && (
           <div className="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-sm font-bold shadow-sm">
@@ -53,7 +53,7 @@ export function ProductGallery({ images, title, model, isNew }: ProductGalleryPr
                 alt={`${title} gallery ${index + 1}`}
                 fill
                 className="object-cover"
-                unoptimized
+                sizes="(max-width: 768px) 33vw, 25vw"
               />
             </button>
           ))}

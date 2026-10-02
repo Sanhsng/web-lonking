@@ -136,6 +136,7 @@ export default async function BlogListPage(props: {
                   alt={featuredPost.title}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
               <div className="p-8 md:p-12 flex flex-col justify-center bg-white z-10">

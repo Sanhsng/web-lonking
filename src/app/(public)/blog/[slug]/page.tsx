@@ -197,6 +197,7 @@ export default async function BlogDetailPage(props: {
                     alt={post.blogFields.authorName}
                     fill
                     className="object-cover"
+                    sizes="48px"
                   />
                 </div>
               )}
@@ -224,6 +225,7 @@ export default async function BlogDetailPage(props: {
               alt={post.title}
               fill
               className="object-cover"
+              sizes="100vw"
             />
           </div>
         </section>

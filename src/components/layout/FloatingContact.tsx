@@ -20,7 +20,7 @@ export function FloatingContact() {
         rel="noopener noreferrer"
         className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform hover:shadow-xl relative group overflow-hidden"
       >
-        <Image src="/images/facebook.svg" alt="Facebook" width={56} height={56} className="object-cover w-full h-full" />
+        <Image src="/images/facebook.svg" alt="Facebook" width={56} height={56} className="object-cover w-full h-full" unoptimized />
         <span className="absolute right-16 bg-white text-gray-800 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-md pointer-events-none">
           Chat Facebook
         </span>
@@ -33,7 +33,7 @@ export function FloatingContact() {
         rel="noopener noreferrer"
         className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform hover:shadow-xl relative group overflow-hidden"
       >
-        <Image src="/images/zalo.svg" alt="Zalo" width={56} height={56} className="object-cover w-full h-full" />
+        <Image src="/images/zalo.svg" alt="Zalo" width={56} height={56} className="object-cover w-full h-full" unoptimized />
         <span className="absolute right-16 bg-white text-gray-800 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-md pointer-events-none">
           Chat Zalo
         </span>
