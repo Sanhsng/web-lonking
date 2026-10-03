@@ -7,7 +7,9 @@ import { getHeroData } from "@/services/banners";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "LOVOL Việt Nam | Máy công trình chính hãng",
+  title: {
+    absolute: "Lovol Việt Nam | Máy công trình Lovol chính hãng",
+  },
   description:
     "LOVOL Việt Nam cung cấp máy công trình chính hãng với công nghệ tiên tiến, hiệu suất mạnh mẽ và độ bền cao, đáp ứng nhu cầu xây dựng, khai thác và san lấp.",
 };
@@ -23,13 +25,21 @@ export default async function HomePage() {
     "description": "Nhà phân phối máy công trình Lovol chính hãng tại Việt Nam.",
     "url": siteConfig.url,
     "telephone": "0914881911",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Phù Dực 1",
-      "addressLocality": "Phù Đổng",
-      "addressRegion": "Gia Lâm, Hà Nội",
-      "addressCountry": "VN"
-    }
+    "address": [
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "Phù Dực 1",
+        "addressLocality": "Phù Đổng",
+        "addressRegion": "Gia Lâm, Hà Nội",
+        "addressCountry": "VN"
+      },
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "36Y5 Khu đô thị Izumi, phường Long Hưng",
+        "addressRegion": "Tp. Đồng Nai",
+        "addressCountry": "VN"
+      }
+    ]
   };
 
   return (

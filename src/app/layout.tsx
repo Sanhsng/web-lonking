@@ -72,6 +72,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: siteConfig.name,
+              alternateName: "Lovol",
               url: siteConfig.url,
             }),
           }}
